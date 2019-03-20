@@ -17,12 +17,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import cn.soa.IotUsermanagerApplication;
+import cn.soa.EquipmentManageApplication;
 import cn.soa.entity.IotUserModuleResource;
 import cn.soa.entity.UserRole;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = IotUsermanagerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = EquipmentManageApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 //@WebAppConfiguration
 public class UserRoleMapperTest {
 	@Autowired

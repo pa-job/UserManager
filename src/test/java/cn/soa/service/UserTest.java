@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import cn.soa.IotUsermanagerApplication;
+import cn.soa.EquipmentManageApplication;
 import cn.soa.dao.UserInfoMapper;
 import cn.soa.dao.UserMapper;
 import cn.soa.dao.UserRoleMapper;
@@ -19,7 +19,7 @@ import cn.soa.service.inter.RoleServiceInter;
 import cn.soa.service.inter.UserServiceInter;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = IotUsermanagerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = EquipmentManageApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class UserTest {
 
 	@Autowired

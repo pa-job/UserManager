@@ -11,7 +11,7 @@ import cn.soa.service.inter.RoleAuthorityServiceInter;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class IotUsermanagerApplicationTests {
+public class EquipmentManageApplicationTests {
 	
 	@Autowired
 	private RoleAuthorityServiceInter service;

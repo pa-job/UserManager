@@ -9,11 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>cn.soa</groupId>
-	<artifactId>iot_usermanager</artifactId>
+	<artifactId>EquipmentManage</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>iot_usermanager</name>
-	<description>iot user manager system</description>
+	<name>EquipmentManage</name>
+	<description>EquipmentManage</description>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -86,19 +85,6 @@
 		    <artifactId>ibatis-core</artifactId>
 		    <version>3.0</version>
 		</dependency> -->
-		
-		<!-- oracle 连接数据驱动包 
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc14</artifactId>
-            <version>10.2.0.4.0</version>
-        </dependency>-->
-        
-        <dependency>
-  			<groupId>cn.easyproject</groupId>
- 			<artifactId>ojdbc6</artifactId>
-  			<version>12.1.0.2.0</version>
-		</dependency>
 
         <!-- alibaba的druid数据库连接池 -->
         <dependency>
@@ -106,6 +92,10 @@
             <artifactId>druid-spring-boot-starter</artifactId>
             <version>1.1.10</version>
         </dependency>
+        <dependency>
+			<groupId>mysql</groupId>
+      		<artifactId>mysql-connector-java</artifactId>
+		</dependency>
         
         <!-- mybatis自动生成mapper
         <dependency>
