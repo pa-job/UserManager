@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: iot_usermanager
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: yanghua
+Implementation-Vendor-Id: cn.soa
+Build-Jdk: 1.8.0_152
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/iot_usermanager
+Created-By: Maven Integration for Eclipse
+
