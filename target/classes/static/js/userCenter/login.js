@@ -34,8 +34,7 @@ $(function(){
 	$( '#form' ).validate({
 		rules : {
 			name : {
-				required : true,
-				minlength: 2
+				required : true
 			},
 			user_password : {
 				required : true
@@ -43,8 +42,7 @@ $(function(){
 		},
 		messages : {
 			name : {
-				required : "用户名不能为空",
-				minlength: "长度不能小于2"
+				required : "用户名不能为空"
 			},
 			user_password : {
 				required : "密码不能为空"
@@ -60,18 +58,7 @@ $(function(){
 	    },
 	    errorPlacement : function(error, element) {  	
             element.parents('div .checkInfo').next('div').find('div').append(error).parent().css({'line-height':'45px'});
-        }/*,
-        submitHandler : function( form ) {
-        	console.log( '---准备提交---' );   	
-        	//form.submit();      	
         }
-	    success : function(label) {
-	    	label.closest('.form-group').removeClass('has-error');
-            label.remove();
-        },     
-        submitHandler : function( form ) {
-        	//form.submit();      	
-        } */
 	})
 })
 
@@ -113,7 +100,7 @@ function registerClickEvent(){
 		title: '用户注册页面',
 //		btn: ['确定', '取消'],
 		area: ['700px','450px'],
-		content: '/html/userCenter/register.html',
+		content: ipPort + '/html/userCenter/register.html',
 		//此处要求返回的格式
 		success: function(){
 			
@@ -122,13 +109,6 @@ function registerClickEvent(){
 			var sonWindow = window[sonDom.find('iframe')[0]['name']],
 				nextNodeExecuPE = sonWindow.getCurrTreeNodeName();	
 		}
-//		btn2: function(index, layero){
-//		    //return false 开启该代码可禁止点击该按钮关闭
-//			layer.close( index );
-//		},
-//		cancel: function( index, layero ){
-//			layer.close( index );
-//		},
 	});
 	
 	//刷新登录页

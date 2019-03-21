@@ -108,6 +108,7 @@ function logoutCallBack(){
 	            location.href = ipPort +  jsonData.data;
 	        }else{
 	        	layer.msg("登出失败", {icon:2});
+	        	return false;
 	        }
 	    }
 	});      

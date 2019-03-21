@@ -147,6 +147,7 @@ public class UserService implements UserServiceInter{
 	  * @return: int  返回新增用户主键      
 	  */  
 	@Override
+	@Transactional
 	public String saveOrganServ(UserOrganization user) {
 		try {
 			int i = userMapper.saveOrganBackId(user);
@@ -170,7 +171,24 @@ public class UserService implements UserServiceInter{
 			if( newUser.getOrgid() == null || newUser.getOrgid().toString().isEmpty() ) {
 				return "0";
 			}else {
-				return newUser.getOrgid();
+				user.setOrgid(newUser.getOrgid()) ;
+			}
+		}
+		
+		//插入角色数据
+		if( "0".equals( user.getState().toString() ) ) {
+			try {
+				int i = userRoleMapper.saveUserAndRoleById( user.getOrgid(), "1" );
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "-1";
+			}			
+		}else {
+			try {
+				int i = userRoleMapper.saveUserAndRoleById( user.getOrgid(), "2" );
+			} catch (Exception e) {
+				e.printStackTrace();
+				return "-1";
 			}
 		}
 		return user.getOrgid();

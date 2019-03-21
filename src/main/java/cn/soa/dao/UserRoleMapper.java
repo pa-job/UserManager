@@ -85,8 +85,8 @@ public interface UserRoleMapper {
 	  * @Description: 根据用户id、用户角色id，增加关联关系       
 	  * @return: int        
 	  */  
-	public int saveUserAndRoleById(@Param("userid") int userid, 
-			@Param("rolid") int rolid);
+	public int saveUserAndRoleById(@Param("userid") String userid, 
+			@Param("rolid") String rolid);
 	
 	
 	 /**   

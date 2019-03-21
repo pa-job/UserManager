@@ -103,7 +103,7 @@ public class UserRoleMapperTest {
 	public void saveUserAndRoleById() {
 		int userid = 12;
 		int rolid = 1;
-		int i = userRoleMapper.saveUserAndRoleById(userid, rolid);
-		System.out.println(i);		
+//		int i = userRoleMapper.saveUserAndRoleById(userid, rolid);
+//		System.out.println(i);		
 	}
 }

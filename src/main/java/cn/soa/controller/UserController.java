@@ -81,6 +81,17 @@ public class UserController {
 	}
 	
 	/**   
+	 * @Title: managerPwd   
+	 * @Description:  获取管理员密码
+	 * @return: ResultJson<String>        
+	 */  
+	@GetMapping("/password")
+	public ResultJson<String> managerPwd(){
+		logger.debug("--C----------获取管理员密码-----------");
+		return new ResultJson<String>( 0, "获取密码成功", "13579" );
+	}
+	
+	/**   
 	 * @Title: getUsersAll   
 	 * @Description:  
 	 * @param: @return      

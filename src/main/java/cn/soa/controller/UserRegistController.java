@@ -94,16 +94,17 @@ public class UserRegistController {
 			return new ResultJson<String>( 0, "用户表用户存在", "用户存在" );
 		}else {
 			logger.debug("--C----------检查用户表的用户编码是不存在-----------");
+			return new ResultJson<String>( 1, "用户表用户都不存在", "用户不存在" );
 			
-			/*
-			 * 检查用户表用户是否存在
-			 */
-			logger.debug("--C----------检查注册表的用户编码是否存在-----------");
-			UserRegister register = userRegistService.findRegisterByNumServ(usernum);
-			if( register != null ) {
-				return new ResultJson<String>( 0, "注册表用户存在", "用户存在" );
-			}
-			return new ResultJson<String>( 1, "注册表和用户表用户都不存在", "用户不存在" );
+//			/*
+//			 * 检查用户表用户是否存在
+//			 */
+//			logger.debug("--C----------检查注册表的用户编码是否存在-----------");
+//			UserRegister register = userRegistService.findRegisterByNumServ(usernum);
+//			if( register != null ) {
+//				return new ResultJson<String>( 0, "注册表用户存在", "用户存在" );
+//			}
+//			return new ResultJson<String>( 1, "注册表和用户表用户都不存在", "用户不存在" );
 		}
 	}
 
