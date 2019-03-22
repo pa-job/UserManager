@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.soa.dao.EquipmentManagerMapper">
+							<!-- sql片段 -->
+	<sql id="equType">
+		 type_id typeId,type_name typeName, parent_id parentId
+	</sql>
+	<sql id="equInfo">
+		equ_Id equId,type_Id typeId,equ_Name equName,equ_In_Time equInTime,equ_Code equCode,equ_State equState,remark1
+	</sql>
+							<!-- select 查询语句 -->
+	<select id="queryAllEqusByCondition" parameterType="cn.soa.entity.EquipmentInfo" resultType="cn.soa.entity.EquipmentInfo">
+			select <include  refid="equInfo"/>  from IOT_EQUIPMENT_INFO
+				<where>	
+					<if test="typeId!=null">
+						and type_Id=#{typeId}
+					</if>
+					<if test="equState!=null">
+						and equ_State=#{equState}
+					</if>
+				</where>
+					<if test="pageSize!=-1">
+						limit #{page}  ,#{pageSize}
+				</if>
+	</select>
+	
+	<select id="queryAllTypeOfEqu" resultType="cn.soa.entity.EquipmentType">
+		select <include refid="equType"/> from IOT_EQUIPMENT_TYPE
+	</select>
+	<select  id="QueryEquCount" resultType="int">
+		select  count(1) cou from IOT_EQUIPMENT_INFO
+			<where>
+				<if test="typeId!=null">
+						and type_Id=#{typeId}
+				</if>
+				<if test="equState!=null">
+						and equ_State=#{equState}
+				</if>
+			</where>
+	</select>
+	
+								<!-- update 修改语句 -->
+	<update id="updateEquBaseInfo">
+			update IOT_EQUIPMENT_INFO 
+			<trim prefix="set" suffixOverrides=","> 
+				<if test="info.typeId!=null">
+					type_Id=#{info.typeId},
+				</if>
+				<if test="info.equName!=null">
+					equ_Name=#{info.equName},
+				</if>
+				<if test="info.equInTime!=null">
+					equ_In_Time=#{info.equInTime}
+				</if>
+				<if test="info.equState!=-1">
+					equ_State=#{info.equState}
+				</if>
+				<if test="info.remark1!=null">
+					remark1=#{info.remark1}
+				</if>
+			</trim>
+			where equ_Id=#{info.equId}
+	</update>
+									<!-- insert 插入语句 -->
+	<insert id="insertEquBaseInfo" useGeneratedKeys="true" keyProperty="id" parameterType="cn.soa.entity.EquipmentInfo">
+				insert into  IOT_EQUIPMENT_INFO
+			<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="info.typeId !=null ">
+				typeId,	
+			</if>
+			<if test="info.equName !=null ">
+				equName,	
+			</if>
+			<if test="info.equInTime !=null ">
+				equInTime,	
+			</if>
+			<if test="info.equCode !=null ">
+				equCode,	
+			</if>
+			<if test="info.equState !=null ">
+				equState,	
+			</if>
+			<if test="info.remark1 !=null ">
+				remark1,	
+			</if>
+		</trim>		
+		values
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="info.typeId !=-1  ">
+				#{info.typeId},	
+			</if>
+			<if test="info.equName !=null ">
+				#{info.equName},	
+			</if>
+			<if test="info.equInTime !=null ">
+				#{info.equInTime},
+			</if>
+			<if test="info.equCode !=null ">
+				#{info.equCode},
+			</if>
+			<if test=" info.equState!=-1 ">
+				 #{info.equState},	
+			</if>
+			<if test="info.remark1 !=null ">
+				#{info.remark1},
+			</if>
+		</trim>
+	</insert>
+	
+	<delete id="deleteEquBaseInfo">
+		delete from IOT_EQUIPMENT_INFO where equId =  #{equId}
+	</delete>
+</mapper>
