@@ -4,12 +4,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
   	<link rel="stylesheet" href="../../jsPackage/web/design/css/layui.css">
-  	<link rel="stylesheet" href="/css/userCenter/index.css">
+  	<link rel="stylesheet" href="../../css/userCenter/index.css">
 </head>
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
 		<div class="layui-header">
-	    	<div class="layui-logo" style="font-size:24px">重庆斯欧</div>
+	    	<div class="layui-logo" style="font-size:24px">设备管理系统</div>
 	    	<!-- 头部区域（可配合layui已有的水平导航） -->
 	    	<ul class="layui-nav layui-layout-left" id="firstMeno">
 	    		
@@ -20,11 +20,11 @@
 			        	<img src="http://t.cn/RCzsdCq" class="layui-nav-img">			         	
 			        </a>
 			        <dl class="layui-nav-child">
-			          	<dd id="userInfo" ><a href="">基本资料</a></dd>
+			          	<!-- <dd id="userInfo" ><a href="">基本资料</a></dd> -->
 			          	<!-- <dd><a href="">安全设置</a></dd>· -->
 			        </dl>
 		      	</li>
-				<li class="layui-nav-item" id="logout"><a href="">退出登录</a></li>
+				<li class="layui-nav-item" id="logout" onclick="logoutCallBack()"><a href="" onclick="return false">退出登录</a></li>
 		    </ul>
 		</div>
 	  
@@ -57,6 +57,8 @@
 	<script src="../../jsPackage/web/design/layui.all.js" ></script> 
 	<script src="../../jsPackage/jquery-3.3.1/jquery-3.3.1.min.js"></script>
 	<script src="../../jsPackage/jquery-3.3.1/jquery.cookie.js"></script>
+	<script src="../../js/micro_userManager.js"></script>
+	<script src="../../jsPackage/own/universal.js"></script>
 	<script src="../../js/userCenter/index.js"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ blockquote {
 	overflow: auto;
 	/*background-color: white;*/
 	background-image: url('../../img/iot_login.jpg');
+	background-size: 100% 100%;
 }
 input {
 	height: 80px;	

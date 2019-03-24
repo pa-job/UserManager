@@ -1,0 +1,9 @@
+select t.TYPE_NAME,sum(i.TYPE_ID) as NUM 
+from iot_equipment_info i 
+	left join iot_equipment_type t on i.TYPE_ID=t.TYPE_ID
+group by TYPE_ID 
+
+
+select 
+from iot_equipment_info 
+group by EQU_STATE
