@@ -22,7 +22,8 @@ public class EquipmentInfo  implements Serializable{
 	private String equName;
 	private String   equInTime;
 	private String   equCode;
-	private Integer equState;  
+	private Integer equState; 
+	private String userName;
 	private String remark1;
 	@Override
 	public String toString() {

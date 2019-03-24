@@ -1,321 +1,177 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="../../jsPackage/web/design/css/layui.css">
-<link rel="stylesheet" href="../../jsPackage/web/design/ztree/css/metroStyle/metroStyle.css" type="text/css">
-<style type="text/css">
-#equType{
-margin-top:10px;
+	<!DOCTYPE html>
+	<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="../../jsPackage/web/design/css/layui.css">
+	<link rel="stylesheet"
+		href="../../jsPackage/web/design/ztree/css/metroStyle/metroStyle.css"
+		type="text/css">
+	<style type="text/css">
+#equType {
+	margin-top: 10px;
 }
-.layui-container{
-margin:0
-}
-</style>
-</head>
-<body>
-	<div class="layui-container" style="height:100%">
-		<div class="layui-row">
-			<div class="layui-col-md2" style="height:100%">
-				 <ul id="equType" class="ztree"></ul>
-			</div>
-			<div class="layui-col-md10" style="height:100%">
-				<table class="layui-table" id="equInfo" lay-filter="test"></table>
-			</div>
-		</div>
-	</div>
-		<div class="layui-row" id="popUpdateTest" style="display: none;">
-		<div class="layui-col-md10">
-			<form class="layui-form role-form" lay-filter="roleForm" action=""
-				style="margin-top: 20px">
-				<div class="layui-form-item" style="display: none">
-					<label class="layui-form-label">设备id</label>
-					<div class="layui-input-block">
-						<input type="text" name="equId">
-					</div>
-				</div>
-				<div class="layui-form-item">
-					<label class="layui-form-label">设备分类</label>
-					<div class="layui-input-block">
-						<select name="typeId" lay-verify="required">
-							<option value="">请选择设备分类</option>
-							<option value="4">A类测量仪</option>
-							<option value="5">B类测量仪</option>
-							<option value="6">C类测量仪</option>
-							<option value="7">A类显微镜</option>
-							<option value="8">B类显微镜</option>
-							<option value="9">C类显微镜</option>
-							<option value="10">A类放大镜</option>
-							<option value="11">B类放大镜</option>
-							<option value="12">C类放大镜</option>
-							<option value="13">D类放大镜</option>
-						</select>
-					</div>
-				</div>
-				<div class="layui-form-item">
-					<label class="layui-form-label">设备名称</label>
-					<div class="layui-input-block">
-						<input type="text" name="equName" required lay-verify="required"
-							autocomplete="off" placeholder="请输入角色名称" class="layui-input">
-					</div>
-				</div>
-				<div class="layui-form-item" >
-					<label class="layui-form-label">设备编码</label>
-					<div class="layui-input-block">
-						<input type="text" name="equCode" required
-							lay-verify="required" autocomplete="off"
-							class="layui-input layui-disabled" disabled>
-					</div>
-				</div>
-				<div class="layui-form-item">
-					<label class="layui-form-label">入库时间</label>
-					<div class="layui-input-block">
-						<input type="text" name="equInTime" required
-							lay-verify="required" autocomplete="off"
-							class="layui-input layui-disabled" disabled>
-					</div>
-				</div>
 
-				<div class="layui-form-item">
-					<label class="layui-form-label">备注</label>
-					<div class="layui-input-block">
-						<textarea name="remark1" placeholder="请输入备注信息" class="layui-textarea"
-							style="resize: none"></textarea>
-					</div>
+.layui-container {
+	margin: 0
+}
+
+.select_item {
+	display: inline-block
+}
+
+.select-form {
+	margin-bottom: 0
+}
+
+.equinfo {
+	margin: 0
+}
+
+	body {
+		background-color: white;
+		height:500px
+	}
+	</style>
+	</head>
+	<body>
+		<div class="layui-container" style="height: 100%">
+			<div class="layui-row">
+				<div class="layui-col-md2" style="height: 100%;margin-left:50px;margin-top:70px;background-color:#F2F2F2">
+					<ul id="equType" class="ztree"></ul>
 				</div>
-				<div class="layui-form-item" style="display: none">
-					<label class="layui-form-label">设备状态</label>
-					<div class="layui-input-block">
-						<input type="text" name="equState" required
-							lay-verify="required" autocomplete="off"
-							class="layui-input layui-disabled" disabled value='0'>
-					</div>
+				<div class="layui-col-md9" style="height: 100%">
+				<div id="select-container"  style="margin:0px;height:40px">
+					<form class="layui-form select-form" lay-filter="roleForm"
+						action="" style="margin-top: 20px" id="toolbarDemo">
+						<div class="layui-form-item select_item">
+							<div class="layui-input-inline">
+								<input type="text" name="equCode" class="layui-input equCode"
+									placeholder="扫描器数或手动数据录入区">
+							</div>
+						</div>
+						<div class="layui-form-item select_item">
+							<div class="layui-input-inline">
+								<select name="typeId" lay-filter="state" placeholder="请选设备状态">
+									<option value="">请选择状态</option>
+									<option value="0">未使用</option>
+									<option value="1">使用中</option>
+									<option value="2">已预约</option>
+								</select>
+							</div>
+						</div>
+					</form>
 				</div>
-				<div class="layui-form-item" style="margin-top: 40px">
-					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit lay-filter="formSubmit">确认</button>
-						<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-					</div>
+					<table class="layui-table" id="equInfo" lay-filter="test" style="margin:0px;padding:0px"></table>
 				</div>
-			</form>
+			</div>
 		</div>
-	</div>
-	<script type="text/html" id="barDemo">
- 	 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">确认借出</a>
-  	 <a class="layui-btn layui-btn-xs" lay-event="edit">确认归还</a>
+		<div class="layui-row" id="popUpdateTest" style="display: none;">
+			<div class="layui-col-md10">
+				<form class="layui-form role-form" lay-filter="roleForm" action=""
+					style="margin-top: 20px">
+					<div class="layui-form-item" style="display: none">
+						<label class="layui-form-label">设备id</label>
+						<div class="layui-input-block">
+							<input type="text" name="equId">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">设备分类</label>
+						<div class="layui-input-block">
+							<select name="typeId" lay-verify="required">
+								<option value="">请选择设备分类</option>
+								<option value="4">A类测量仪</option>
+								<option value="5">B类测量仪</option>
+								<option value="6">C类测量仪</option>
+								<option value="7">A类显微镜</option>
+								<option value="8">B类显微镜</option>
+								<option value="9">C类显微镜</option>
+								<option value="10">A类放大镜</option>
+								<option value="11">B类放大镜</option>
+								<option value="12">C类放大镜</option>
+								<option value="13">D类放大镜</option>
+							</select>
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">设备名称</label>
+						<div class="layui-input-block">
+							<input type="text" name="equName"  lay-verify="required"
+								autocomplete="off" placeholder="请输入角色名称" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">设备编码</label>
+						<div class="layui-input-block">
+							<input type="text" name="equCode"  lay-verify="required"
+								autocomplete="off" class="layui-input">
+						</div>
+					</div>
+					<div class="layui-form-item">
+						<label class="layui-form-label">入库时间</label>
+						<div class="layui-input-block">
+							<input type="text" name="equInTime" required lay-verify="required"
+								autocomplete="off" class="layui-input layui-disabled" disabled>
+						</div>
+					</div>
+	
+					<div class="layui-form-item">
+						<label class="layui-form-label">备注</label>
+						<div class="layui-input-block">
+							<textarea name="remark1" placeholder="请输入备注信息"
+								class="layui-textarea" style="resize: none"></textarea>
+						</div>
+					</div>
+					<div class="layui-form-item" style="display: none">
+						<label class="layui-form-label">设备状态</label>
+						<div class="layui-input-block">
+							<input type="text" name="equState" required lay-verify="required"
+								autocomplete="off" class="layui-input layui-disabled" disabled
+								value='0'>
+						</div>
+					</div>
+					<div class="layui-form-item" style="margin-top: 40px">
+						<div class="layui-input-block">
+							<button class="layui-btn form-sub" lay-submit lay-filter="formSubmit">确认</button>
+							<button class="layui-btn cancel" lay-filter="cancel">关闭</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<script type="text/html" id="tool">
+		
+	<div class="layui-btn-group" style="display:inline-block;height:38px">
+	  <button class="layui-btn layui-btn-primary layui-btn-sm addEquipment" lay-event="add">
+	    <i class="layui-icon">&#xe654;</i>
+	  </button>
+	  <button class="layui-btn layui-btn-primary layui-btn-sm" lay-event="edit">
+	    <i class="layui-icon">&#xe642;</i>
+	  </button>
+	  <button class="layui-btn layui-btn-primary layui-btn-sm" lay-event="delete">
+	    <i class="layui-icon">&#xe640;</i>
+	  </button>
+	 </div>
+
+	</script>
+		<script type="text/html" id="barDemo">
+  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">取消</a>
+ 	 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">借出</a>
+  	 <a class="layui-btn layui-btn-xs" lay-event="edit">归还</a>
 	 </script>
-	 	<script type="text/html" id="equState">
+		<script type="text/html" id="equState">
 {{#  if(d.equState ==0){ }}
     <span style="color: #C6EC50;">{{ '未使用' }}</span>
   {{#  }  else if(d.equState ==1) { }}
-    <span style="color: #F581B1;">{{ '已使用' }}</span>
+    <span style="color: #F581B1;">{{ '使用中' }}</span>
   {{#  }else if (d.equState ==2){ }}
  <span style="color: #F581B1;">{{ '已预约' }}</span>
  {{# }}}
-</script>
-	<script src="../../jsPackage/web/design/layui.all.js"></script>
-	<script src="../../jsPackage/web/design/ztree/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../jsPackage/web/design/ztree/jquery.ztree.all.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			//初始化树组件
-		     var setting = {
-			         view: {
-			             dblClickExpand: false,
-			             showLine: false
-			         },
-			         data: {
-			        	 key:{
-			        		 name:'typeName'
-			        	 },
-			     		simpleData: {
-			    			enable: true,
-			    			idKey: "typeId",
-			    			pIdKey: "parentId",
-			    			rootPId: 0
-			    		}
-			         },
-			         callback: {
-			     		onClick: zTreeOnClick
-			     	},
-			         check: {
-			             enable: true,
-			             chkStyle: "radio",
-			             chkboxType: {"Y": "ps", "N": "s"}
-			         }
-			     };
-		
-			//动态请求获取
-			$.getJSON('/EquipmentManage/equ/getEquTypes',function(ajaxData){
-				var zNodes=ajaxData.data;
-				 zTreeObj = $.fn.zTree.init($("#equType"), setting, zNodes);
-				 var treeObj = $.fn.zTree.getZTreeObj("equType");
-				 treeObj.expandAll(true);
-			});
-			//初始化表格
-			var table = layui.table,
-			typeId=null,
-			equState=null,
-			layer=layui.layer,
-			laypage = layui.laypage
-			form=layui.form,
-			element=layui.element;
-			var tableIns =table.render({
-				toolbar: 'default'
-			    ,elem: '#equInfo'
-			    ,url:'/EquipmentManage/equ/getAllEqusByCondition'
-			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-			    ,loading:true
-			    ,page:true
-			    ,cols: [[
-			      {type:'checkbox'}
-			      ,{type:'numbers'}
-			      ,{field:'equId', title: '设备id',hide:true}
-			      ,{field:'typeId', title: '分类id',hide:true} 
-			      ,{field:'equName', title: '设备名字'}
-			      ,{field:'equCode', title: '设备编码', sort: true}
-			      ,{field:'equInTime', title: '入库时间', sort: true}
-			      ,{field:'equState', title: '设备状态', templet: '#equState'}
-			      ,{field:'remark1', title: '备注休息', align: 'center'} 
-			      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
-			    ]]
-			  });
-			//为树节点添加单击事件
-			function zTreeOnClick (event, treeId, treeNode){
-				if(treeNode.parentId==0){
-					return ;
-				}else{
-					$('span').removeClass('radio_true_full');
-					$("a[title='"+treeNode.typeName+"']").prev('span').addClass('radio_true_full');
-					typeId=treeNode.typeId;
-					console.log("typeId"+typeId);
-					tableIns.reload('test',{  where: { //设定异步数据接口的额外参数，任意设
-						'typeId':typeId
-					},
-					page:{ curr: 1}
-					});
-				}
-			}
-			//表格头工具事件简单封装
-			var toolbarAction={
-					openLayer:function(){
-						 layer.open({
-							 type:1,
-							 content: $('#popUpdateTest'),
-							 offset: 'auto',
-							 area: ['500px', '550px'],
-							 cancel: function(){ 
-								 $('#popUpdateTest').hide();
-							 },
-							 success:function(layero){
-							     var mask = $(".layui-layer-shade");
-							     mask.appendTo(layero.parent());
-							     //其中：layero是弹层的DOM对象
-							     element.init();
-							     form.render(); 
-							}
-						 });
-					}
-			};
-			//监听表单提交事件
-			
-			form.on('submit(formSubmit)', function(data){
-				$.ajax({
-					url:'/EquipmentManage/equ/addOrUpdateEqu',
-					data:$('.role-form').serialize() ,
-					dataType:'json',
-					success:function(data){
-						  $(".layui-laypage-btn")[0].click(); 
-						  layer.closeAll();
-						  $('#popUpdateTest').hide();
-					},
-					error:function(){
-						 layer.msg("设备操作异常");
-					}
-				});
-				return false;
-			});
-
-			function setFormVal(el,data){
-			    for (var p in data)
-			    {
-			        el.find(":input[name='" + p + "']").val(data[p]);
-			    }
-			};
-			 table.on('toolbar(test)', function(obj){
-				    var checkStatus = table.checkStatus(obj.config.id)
-				    ,data = checkStatus.data; //获取选中的数据
-				    switch(obj.event){
-				      case 'add':
-				    		 toolbarAction.openLayer();
-				    		 var date= new Date();
-				    		 var time=date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
-				    		 $('input[name="equInTime"]').val(time)
-				    		
-				      break;
-				      case 'update':
-				        if(data.length === 0){
-				          layer.msg('请选择一行');
-				        } else if(data.length > 1){
-				          layer.msg('只能同时编辑一个');
-				        } else {
-				   		 //获取选中数据
-				   		 var checkStatus = table.checkStatus('equInfo')
-				   				,data = checkStatus.data;
-				   		 if (data.length==1){
-				   			 toolbarAction.openLayer();
-				   			 setFormVal($('.role-form'),data[0]);
-				   			 
-				   			 }else if(data.length>1){
-				   				 layer.msg("不能同时编辑多条数据",{icon:5});
-				   			 }else if(data.length<1){
-				   				 layer.msg("请选中一条数据",{icon:5});
-				   			 }
-				   		
-				        }
-				      break;
-				      case 'delete':
-				        if(data.length === 0){
-				          layer.msg('请选择一行');
-				        } else {
-				          layer.msg('删除');
-				        }
-				      break;
-				    };
-				  });
-				  
-				  //监听行工具事件
-				  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-				    var data = obj.data //获得当前行数据
-				    ,layEvent = obj.event; //获得 lay-event 对应的值
-				    if(layEvent === 'detail'){
-				     //修改状态
-				     if(data.equState==2){
-					     $.get('/EquipmentManage/equ/updateEquBaseInfo',{equId:data.equId,equState:1},function(ajaxData){
-					    	 if(ajaxData.state==0){
-					    		 layer.msg('设备确认借出',{icon:4});
-					    		 $(".layui-laypage-btn")[0].click(); 
-					    	 }
-					     })
-				     }else{
-				    	 layer.msg("设备暂未预约，不可借出",{icon:5})
-				     }
-				    } else if(layEvent === 'edit'){
-				    	if(data.equState==1){
-				    	     $.get ('/EquipmentManage/equ/updateEquBaseInfo',{equId:data.equId,equState:0},function(ajaxData){
-						    	 if(ajaxData.state==0){
-						    		 layer.msg('设备确认已归还',{icon:6});
-						    		 $(".layui-laypage-btn")[0].click(); 
-						    	 }
-						     })
-				    	}else{
-				    		layer.msg("设备暂为借出，无需归还",{icon:5})
-				    	}
-					
-				    } 
-				  });
-		});
 	</script>
-</body>
-</html>
+		<script src="../../jsPackage/web/design/layui.all.js"></script>
+		<script src="../../jsPackage/web/design/ztree/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="../../jsPackage/web/design/ztree/jquery.ztree.all.js"></script>
+		<script type="text/javascript" src="../../js/userCenter/equipmentManager.js"> </script>
+	</body>
+	</html>

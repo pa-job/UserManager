@@ -4,24 +4,63 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="../../jsPackage/web/design/css/layui.css">
-<link rel="stylesheet" href="../../jsPackage/web/design/ztree/css/metroStyle/metroStyle.css" type="text/css">
+<link rel="stylesheet"
+	href="../../jsPackage/web/design/ztree/css/metroStyle/metroStyle.css"
+	type="text/css">
 <style type="text/css">
-#equType{
-margin-top:10px;
+#equType {
+	margin-top: 10px;
 }
-.layui-container{
-margin:0
+
+.layui-container {
+	margin: 0
 }
+
+.select_item {
+	display: inline-block
+}
+
+.select-form {
+	margin-bottom: 0
+}
+
+.equinfo {
+	margin: 0
+}
+body {
+		background-color: white;
+	}
 </style>
 </head>
 <body>
-	<div class="layui-container" style="height:100%">
+	<div class="layui-container" style="height: 100%">
 		<div class="layui-row">
-			<div class="layui-col-md2" style="height:100%">
-				 <ul id="equType" class="ztree"></ul>
+			<div class="layui-col-md2" style="height: 100%;margin-left:50px;margin-top:70px;background-color:#F2F2F2">
+				<ul id="equType" class="ztree"></ul>
 			</div>
-			<div class="layui-col-md10" style="height:100%">
-				<table class="layui-table" id="equInfo" lay-filter="test"></table>
+			<div class="layui-col-md9" style="height: 100%">
+				<div id="select-container" style="margin:0px;height:40px">
+					<form class="layui-form select-form" lay-filter="roleForm"
+						action="" style="margin-top: 20px;" id="toolbarDemo">
+						<div class="layui-form-item select_item">
+							<div class="layui-input-inline">
+								<select name="typeId" lay-filter="state" placeholder="请选设备状态">
+									<option value="">请选择状态</option>
+									<option value="0">未使用</option>
+									<option value="1">使用中</option>
+									<option value="2">已预约</option>
+								</select>
+							</div>
+						</div>
+						<div class="layui-form-item select_item">
+							<div class="layui-input-inline">
+								<input type="text" name="equName" class="layui-input"
+									placeholder="请输入设备名称">
+							</div>
+						</div>
+					</form>
+				</div>
+				<table class="layui-table equinfo" id="equInfo" lay-filter="test" style="margin:0px;padding:0px"></table>
 			</div>
 		</div>
 	</div>
@@ -29,130 +68,20 @@ margin:0
  	 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">预约</a>
   	 <a class="layui-btn layui-btn-xs" lay-event="edit">取消预约</a>
 	 </script>
-	 	<script type="text/html" id="equState">
+	<script type="text/html" id="equState">
 {{#  if(d.equState ==0){ }}
     <span style="color: #C6EC50;">{{ '未使用' }}</span>
   {{#  }  else if(d.equState ==1) { }}
-    <span style="color: #F581B1;">{{ '已使用' }}</span>
+    <span style="color: #F581B1;">{{ '使用中' }}</span>
   {{#  }else if (d.equState ==2){ }}
  <span style="color: #F581B1;">{{ '已预约' }}</span>
  {{# }}}
 </script>
 	<script src="../../jsPackage/web/design/layui.all.js"></script>
 	<script src="../../jsPackage/web/design/ztree/jquery-1.4.4.min.js"></script>
-	<script type="text/javascript" src="../../jsPackage/web/design/ztree/jquery.ztree.all.js"></script>
-	<script type="text/javascript">
-		$(function(){
-			//初始化树组件
-		     var setting = {
-			         view: {
-			             dblClickExpand: false,
-			             showLine: false
-			         },
-			         data: {
-			        	 key:{
-			        		 name:'typeName'
-			        	 },
-			     		simpleData: {
-			    			enable: true,
-			    			idKey: "typeId",
-			    			pIdKey: "parentId",
-			    			rootPId: 0
-			    		}
-			         },
-			         callback: {
-			     		onClick: zTreeOnClick
-			     	},
-			         check: {
-			             enable: true,
-			             chkStyle: "radio",
-			             chkboxType: {"Y": "ps", "N": "s"}
-			         }
-			     };
-		
-			//动态请求获取
-			$.getJSON('/EquipmentManage/equ/getEquTypes',function(ajaxData){
-				var zNodes=ajaxData.data;
-				 zTreeObj = $.fn.zTree.init($("#equType"), setting, zNodes);
-				 var treeObj = $.fn.zTree.getZTreeObj("equType");
-				 treeObj.expandAll(true);
-			});
-			//初始化表格
-			var table = layui.table,
-			typeId=null,
-			equState=null,
-			layer=layui.layer,
-			laypage = layui.laypage
-			form=layui.form,
-			element=layui.element;
-			var tableIns =table.render({
-				toolbar: 'default'
-			    ,elem: '#equInfo'
-			    ,url:'/EquipmentManage/equ/getAllEqusByCondition'
-			    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
-			    ,loading:true
-			    ,page:true
-			    ,cols: [[
-			      {type:'checkbox'}
-			      ,{type:'numbers'}
-			      ,{field:'equId', title: '设备id',hide:true}
-			      ,{field:'typeId', title: '分类id',hide:true} 
-			      ,{field:'equName', title: '设备名字'}
-			      ,{field:'equCode', title: '设备编码', sort: true}
-			      ,{field:'equInTime', title: '入库时间', sort: true}
-			      ,{field:'equState', title: '设备状态', templet: '#equState'}
-			      ,{field:'remark1', title: '备注休息', align: 'center'} 
-			      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
-			    ]]
-			  });
-			//为树节点添加单击事件
-			function zTreeOnClick (event, treeId, treeNode){
-				if(treeNode.parentId==0){
-					return ;
-				}else{
-					$('span').removeClass('radio_true_full');
-					$("a[title='"+treeNode.typeName+"']").prev('span').addClass('radio_true_full');
-					typeId=treeNode.typeId;
-					console.log("typeId"+typeId);
-					tableIns.reload('test',{  where: { //设定异步数据接口的额外参数，任意设
-						'typeId':typeId
-					},
-					page:{ curr: 1}
-					});
-				}
-			}
-			
-				  //监听行工具事件
-				  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-				    var data = obj.data //获得当前行数据
-				    ,layEvent = obj.event; //获得 lay-event 对应的值
-				    if(layEvent === 'detail'){
-				     //修改状态
-				     if(data.equState==0){
-					     $.get('/EquipmentManage/equ/updateEquBaseInfo',{equId:data.equId,equState:2},function(ajaxData){
-					    	 if(ajaxData.state==0){
-					    		 layer.msg('设备预约成功',{icon:4});
-					    		 $(".layui-laypage-btn")[0].click(); 
-					    	 }
-					     })
-				     }else{
-				    	 layer.msg("设备已被使用，不可预约",{icon:5})
-				     }
-				    } else if(layEvent === 'edit'){
-				    	if(data.equState==2){
-				    	     $.get ('/EquipmentManage/equ/updateEquBaseInfo',{equId:data.equId,equState:0},function(ajaxData){
-						    	 if(ajaxData.state==0){
-						    		 layer.msg('设备确认已归还',{icon:6});
-						    		 $(".layui-laypage-btn")[0].click(); 
-						    	 }
-						     })
-				    	}else{
-				    		layer.msg("你还为预约该设备，不需要取消",{icon:5})
-				    	}
-					
-				    } 
-				  });
-		});
-	</script>
+	<script src="../../jsPackage/jquery-3.3.1/jquery.cookie.js"></script>
+	<script type="text/javascript"
+		src="../../jsPackage/web/design/ztree/jquery.ztree.all.js"></script>
+	<script type="text/javascript" src="../../js/userCenter/equipmentManager_commn.js"> </script>
 </body>
 </html>

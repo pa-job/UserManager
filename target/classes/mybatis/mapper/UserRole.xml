@@ -185,7 +185,7 @@
 		insert into IOT_USER_USER_ROLE
 		( USER_ROL_ID, userid, rolid )
 		values
-		( UUID(),#{user.userid,jdbcType=INTEGER}, #{userRole.rolid,jdbcType=INTEGER})
+		( UUID(),#{user.usernum,jdbcType=INTEGER}, #{userRole.rolid,jdbcType=INTEGER})
 	</insert>
 	
 	<!-- 根据用户id、用户角色id，删除关联关系 -->

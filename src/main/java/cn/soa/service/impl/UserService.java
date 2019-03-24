@@ -178,14 +178,14 @@ public class UserService implements UserServiceInter{
 		//插入角色数据
 		if( "0".equals( user.getState().toString() ) ) {
 			try {
-				int i = userRoleMapper.saveUserAndRoleById( user.getOrgid(), "1" );
+				int i = userRoleMapper.saveUserAndRoleById( user.getUsernum(), "1" );
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "-1";
 			}			
 		}else {
 			try {
-				int i = userRoleMapper.saveUserAndRoleById( user.getOrgid(), "2" );
+				int i = userRoleMapper.saveUserAndRoleById( user.getUsernum(), "2" );
 			} catch (Exception e) {
 				e.printStackTrace();
 				return "-1";

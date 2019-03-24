@@ -94,17 +94,13 @@ public class LoginController{
 			String roles = "";
 			logger.debug("-------userRoles:-----------" + userRoles );
 			if( userRoles != null && userRoles.get(0) != null ) {
-				for( UserRole u : userRoles) {
-					if( roles != null && roles.isEmpty() ) {
-						roles = u.getName();
-					}
-					roles = roles + "," + u.getName();
-				}
+						roles = userRoles.get(0).getRolid();
 				GlobalUtil.addCookie( "role", roles );
 			}		
 			
 			//设置组织			
 			UserOrganization user = userService.getUserOrganByUsernum( userName.trim() );
+			logger.debug("-------user:-----------" + user );
 			if( user != null ) {
 				GlobalUtil.addCookie( "organ", user.getParent_id() );
 			}
