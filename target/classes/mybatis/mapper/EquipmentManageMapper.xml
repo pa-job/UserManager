@@ -6,17 +6,28 @@
 		 type_id typeId,type_name typeName, parent_id parentId
 	</sql>
 	<sql id="equInfo">
-		equ_Id equId,type_Id typeId,equ_Name equName,equ_In_Time equInTime,equ_Code equCode,equ_State equState,remark1
+		 user_name userName,equ_Id equId,type_Id typeId,equ_Name equName,equ_In_Time equInTime,equ_Code equCode,equ_State equState,remark1
 	</sql>
 							<!-- select 查询语句 -->
 	<select id="queryAllEqusByCondition" parameterType="cn.soa.entity.EquipmentInfo" resultType="cn.soa.entity.EquipmentInfo">
 			select <include  refid="equInfo"/>  from IOT_EQUIPMENT_INFO
 				<where>	
-					<if test="typeId!=null">
-						and type_Id=#{typeId}
+					<if test ="info!=null">
+					<if test="info.typeId!=null">
+						and type_Id=#{info.typeId}
 					</if>
-					<if test="equState!=null">
-						and equ_State=#{equState}
+					<if test="info.equState!=null">
+						and equ_State=#{info.equState}
+					</if>
+					<if test="info.equName!=null">
+						and equ_Name   like '%${info.equName}%' 
+					</if>
+					<if test="info.userName!=null">
+						and    user_name =#{info.userName} 
+					</if>
+					<if test="info.equCode!=null">
+						and   equ_Code =#{info.equCode} 
+					</if>
 					</if>
 				</where>
 					<if test="pageSize!=-1">
@@ -30,12 +41,23 @@
 	<select  id="QueryEquCount" resultType="int">
 		select  count(1) cou from IOT_EQUIPMENT_INFO
 			<where>
-				<if test="typeId!=null">
-						and type_Id=#{typeId}
-				</if>
-				<if test="equState!=null">
-						and equ_State=#{equState}
-				</if>
+				<if test ="info!=null">
+					<if test="info.typeId!=null">
+						and type_Id=#{info.typeId}
+					</if>
+					<if test="info.equState!=null">
+						and equ_State=#{info.equState}
+					</if>
+					<if test="info.equName!=null">
+						and equ_Name like  '%${info.equName}%'  
+					</if>
+					<if test="info.userName!=null">
+						and    user_name =#{info.userName} 
+					</if>
+					<if test="info.equCode!=null">
+						and    equ_Code =#{info.equCode} 
+					</if>
+					</if>
 			</where>
 	</select>
 	
@@ -50,13 +72,16 @@
 					equ_Name=#{info.equName},
 				</if>
 				<if test="info.equInTime!=null">
-					equ_In_Time=#{info.equInTime}
+					equ_In_Time=#{info.equInTime},
 				</if>
-				<if test="info.equState!=-1">
-					equ_State=#{info.equState}
+				<if test="info.equState!=null">
+					equ_State=#{info.equState},
 				</if>
 				<if test="info.remark1!=null">
-					remark1=#{info.remark1}
+					remark1=#{info.remark1},
+				</if>
+				<if test="info.userName!=null">
+					user_Name=#{info.userName},
 				</if>
 			</trim>
 			where equ_Id=#{info.equId}
@@ -66,19 +91,19 @@
 				insert into  IOT_EQUIPMENT_INFO
 			<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="info.typeId !=null ">
-				typeId,	
+				type_Id,	
 			</if>
 			<if test="info.equName !=null ">
-				equName,	
+				equ_Name,	
 			</if>
 			<if test="info.equInTime !=null ">
-				equInTime,	
+				equ_In_Time,	
 			</if>
 			<if test="info.equCode !=null ">
-				equCode,	
+				equ_Code,	
 			</if>
 			<if test="info.equState !=null ">
-				equState,	
+				equ_State,	
 			</if>
 			<if test="info.remark1 !=null ">
 				remark1,	
@@ -86,7 +111,7 @@
 		</trim>		
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="info.typeId !=-1  ">
+			<if test="info.typeId !=null  ">
 				#{info.typeId},	
 			</if>
 			<if test="info.equName !=null ">
@@ -98,7 +123,7 @@
 			<if test="info.equCode !=null ">
 				#{info.equCode},
 			</if>
-			<if test=" info.equState!=-1 ">
+			<if test=" info.equState!=null ">
 				 #{info.equState},	
 			</if>
 			<if test="info.remark1 !=null ">
@@ -108,6 +133,9 @@
 	</insert>
 	
 	<delete id="deleteEquBaseInfo">
-		delete from IOT_EQUIPMENT_INFO where equId =  #{equId}
+		delete from IOT_EQUIPMENT_INFO where equ_Id  in
+		 <foreach collection="ids" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
 	</delete>
 </mapper>

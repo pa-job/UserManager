@@ -20,15 +20,15 @@ public class EquipmentManagerImpl  implements EquipmentManagerInter{
 	}
 
 	@Override
-	public List<EquipmentInfo> queryAllEqusByCondition( Integer typeId, Integer equState, Integer page, Integer pageSize) {
-		System.out.println("typeId"+typeId);
-		return EquipmentManagerDao.queryAllEqusByCondition(typeId,equState,page,pageSize);
+	public List<EquipmentInfo> queryAllEqusByCondition(EquipmentInfo info, Integer page, Integer pageSize) {
+		
+		return EquipmentManagerDao.queryAllEqusByCondition(info,page,pageSize);
 	}
 
 	@Override
-	public Integer QueryEquCount( Integer typeId, Integer equState) {
+	public Integer QueryEquCount(EquipmentInfo info) {
 		// TODO Auto-generated method stub
-		return EquipmentManagerDao.QueryEquCount(typeId,equState);
+		return EquipmentManagerDao.QueryEquCount(info);
 	}
 
 	@Override
@@ -44,9 +44,9 @@ public class EquipmentManagerImpl  implements EquipmentManagerInter{
 	}
 
 	@Override
-	public Integer deleteEquBaseInfo(int equId) {
+	public Integer deleteEquBaseInfo(List<Integer> ids) {
 		// TODO Auto-generated method stub
-		return EquipmentManagerDao.deleteEquBaseInfo(equId);
+		return EquipmentManagerDao.deleteEquBaseInfo(ids);
 	}
 
 }

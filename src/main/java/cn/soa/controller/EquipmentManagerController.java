@@ -27,15 +27,14 @@ public class EquipmentManagerController {
 		
 	};
 	@RequestMapping("/getAllEqusByCondition")
-	public UserTableJson<List<EquipmentInfo>> queryAllEqusByCondition(@RequestParam(value="typeId",required=false) Integer typeId,@RequestParam(value="equState",required=false) Integer equState,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="limit",required=false) Integer pageSize){
+	public UserTableJson<List<EquipmentInfo>> queryAllEqusByCondition( EquipmentInfo info,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="limit",required=false) Integer pageSize){
 		if(pageSize==null &&page==null) {
 			pageSize=-1;
 			page=-1;
 		};
-		System.out.println("typeId"+typeId);
-		List<EquipmentInfo> lists =EquipmentManagerService.queryAllEqusByCondition(typeId,equState, (page-1)*pageSize, pageSize);
+		List<EquipmentInfo> lists =EquipmentManagerService.queryAllEqusByCondition(info, (page-1)*pageSize, pageSize);
 		
-		Integer count=EquipmentManagerService.QueryEquCount(typeId,equState);
+		Integer count=EquipmentManagerService.QueryEquCount(info);
 	
 		if(count==null) {
 			count=0;
@@ -54,8 +53,9 @@ public class EquipmentManagerController {
 		
 	}
 	@RequestMapping("/deleteEquBaseInfo")
-	public ResultJson<Integer> deleteEquBaseInfo (@RequestParam("equId") Integer  equId){
-	int count=EquipmentManagerService.deleteEquBaseInfo(equId);
+	public ResultJson<Integer> deleteEquBaseInfo (@RequestParam("list[]") List<Integer>  list){
+		System.out.println("list"+list);
+	int count=EquipmentManagerService.deleteEquBaseInfo(list);
 	return new  ResultJson(count);
 	}
 }

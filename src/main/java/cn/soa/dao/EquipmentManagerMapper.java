@@ -17,11 +17,11 @@ public interface EquipmentManagerMapper {
 	/*
 	 * 按照条件查询设备基本信息，含分页功能
 	 */
-	public List<EquipmentInfo> queryAllEqusByCondition(@Param("typeId") Integer typeId,@Param("equState") Integer equState,@Param("page") Integer page,@Param("pageSize") Integer pageSize );
+	public List<EquipmentInfo> queryAllEqusByCondition(@Param("info") EquipmentInfo info,@Param("page") Integer page,@Param("pageSize") Integer pageSize );
 	/*
 	 * 根据条件统计设备数量
 	 */
-	public Integer  QueryEquCount(@Param("typeId") Integer typeId,@Param("equState") Integer equState);
+	public Integer  QueryEquCount(@Param("info") EquipmentInfo info);
 	/*
 	 * 修改设备基本信息，包含全部信息，或者某一个信息，例如修改设备状态
 	 */
@@ -33,6 +33,6 @@ public interface EquipmentManagerMapper {
 	/*
 	 * 删除设备信息
 	 */
-	public  Integer deleteEquBaseInfo(@Param("info")int equId);
+	public  Integer deleteEquBaseInfo(@Param("ids")List<Integer> ids);
 
 }

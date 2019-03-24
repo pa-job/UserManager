@@ -94,12 +94,7 @@ public class LoginController{
 			String roles = "";
 			logger.debug("-------userRoles:-----------" + userRoles );
 			if( userRoles != null && userRoles.get(0) != null ) {
-				for( UserRole u : userRoles) {
-					if( roles != null && roles.isEmpty() ) {
-						roles = u.getName();
-					}
-					roles = roles + "," + u.getName();
-				}
+						roles = userRoles.get(0).getRolid();
 				GlobalUtil.addCookie( "role", roles );
 			}		
 			
