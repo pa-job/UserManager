@@ -1,5 +1,6 @@
 package cn.soa.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,14 +30,23 @@ public class EquipmentManagerController {
 		
 	};
 	@RequestMapping("/getAllEqusByCondition")
-	public UserTableJson<List<EquipmentInfo>> queryAllEqusByCondition( EquipmentInfo info,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="limit",required=false) Integer pageSize){
+	public UserTableJson<List<EquipmentInfo>> queryAllEqusByCondition( EquipmentInfo info,@RequestParam(value="list[]",required=false) List<Integer> list,@RequestParam(value="page",required=false) Integer page,@RequestParam(value="limit",required=false) Integer pageSize){
 		if(pageSize==null &&page==null) {
 			pageSize=-1;
 			page=-1;
 		};
-		List<EquipmentInfo> lists =EquipmentManagerService.queryAllEqusByCondition(info, (page-1)*pageSize, pageSize);
+		System.out.println("lxf---------------------------"+list);
+		if(list==null||list.size()==0) {
+			list=new ArrayList<>();
+			List<EquipmentType> lists=EquipmentManagerService.queryAllTypeOfEqu();
+			for(EquipmentType e:lists) {
+				list.add(e.getTypeId());
+			}
+		};
+		System.out.println("list"+list);
+		List<EquipmentInfo> lists =EquipmentManagerService.queryAllEqusByCondition(info,list, (page-1)*pageSize, pageSize);
 		
-		Integer count=EquipmentManagerService.QueryEquCount(info);
+		Integer count=EquipmentManagerService.QueryEquCount(info,list);
 	
 		if(count==null) {
 			count=0;

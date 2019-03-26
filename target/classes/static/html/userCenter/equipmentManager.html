@@ -35,9 +35,9 @@
 	</style>
 	</head>
 	<body>
-		<div class="layui-container" style="height: 100%">
+		<div class="layui-container" style="height: 100%;width:100%">
 			<div class="layui-row">
-				<div class="layui-col-md2" style="height: 100%;margin-left:50px;margin-top:70px;background-color:#F2F2F2">
+				<div class="layui-col-md2" style="height: 100%;margin0-left:5px;margin-top:70px;background-color:#F2F2F2">
 					<ul id="equType" class="ztree"></ul>
 				</div>
 				<div class="layui-col-md9" style="height: 100%">
@@ -108,11 +108,11 @@
 								autocomplete="off" class="layui-input">
 						</div>
 					</div>
-					<div class="layui-form-item">
+					<div class="layui-form-item" >
 						<label class="layui-form-label">入库时间</label>
 						<div class="layui-input-block">
-							<input type="text" name="equInTime" required lay-verify="required"
-								autocomplete="off" class="layui-input layui-disabled" disabled>
+							<input type="text" name="equInTime" 
+								autocomplete="off" class="layui-input " >
 						</div>
 					</div>
 	
@@ -126,7 +126,7 @@
 					<div class="layui-form-item" style="display: none">
 						<label class="layui-form-label">设备状态</label>
 						<div class="layui-input-block">
-							<input type="text" name="equState" required lay-verify="required"
+							<input type="text" name="equState"  class="equState"
 								autocomplete="off" class="layui-input layui-disabled" disabled
 								value='0'>
 						</div>

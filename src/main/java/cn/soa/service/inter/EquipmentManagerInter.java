@@ -16,11 +16,11 @@ public interface EquipmentManagerInter {
 	/*
 	 * 按照条件查询设备基本信息，含分页功能
 	 */
-	public List<EquipmentInfo> queryAllEqusByCondition(EquipmentInfo info,Integer page, Integer pageSize );
+	public List<EquipmentInfo> queryAllEqusByCondition(EquipmentInfo info,List<Integer> list,Integer page, Integer pageSize );
 	/*
 	 * 根据条件统计设备数量
 	 */
-	public Integer  QueryEquCount( EquipmentInfo info);
+	public Integer  QueryEquCount( EquipmentInfo info,List<Integer> list);
 	/*
 	 * 修改设备基本信息，包含全部信息，或者某一个信息，例如修改设备状态
 	 */

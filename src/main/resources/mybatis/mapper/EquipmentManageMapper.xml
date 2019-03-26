@@ -13,9 +13,7 @@
 			select <include  refid="equInfo"/>  from IOT_EQUIPMENT_INFO
 				<where>	
 					<if test ="info!=null">
-					<if test="info.typeId!=null">
-						and type_Id=#{info.typeId}
-					</if>
+			
 					<if test="info.equState!=null">
 						and equ_State=#{info.equState}
 					</if>
@@ -28,6 +26,12 @@
 					<if test="info.equCode!=null">
 						and   equ_Code =#{info.equCode} 
 					</if>
+					</if>
+					<if test ="typeIds!=null">
+					and 	type_Id in	
+					<foreach collection="typeIds" item="item" index="index" open="(" close=")" separator=",">
+           				 #{item}
+       				 </foreach>
 					</if>
 				</where>
 					<if test="pageSize!=-1">
@@ -42,9 +46,7 @@
 		select  count(1) cou from IOT_EQUIPMENT_INFO
 			<where>
 				<if test ="info!=null">
-					<if test="info.typeId!=null">
-						and type_Id=#{info.typeId}
-					</if>
+			
 					<if test="info.equState!=null">
 						and equ_State=#{info.equState}
 					</if>
@@ -57,6 +59,12 @@
 					<if test="info.equCode!=null">
 						and    equ_Code =#{info.equCode} 
 					</if>
+					</if>
+					<if test ="typeIds!=null">
+					and 	type_Id in	
+					<foreach collection="typeIds" item="item" index="index" open="(" close=")" separator=",">
+           				 #{item}
+       				 </foreach>
 					</if>
 			</where>
 	</select>

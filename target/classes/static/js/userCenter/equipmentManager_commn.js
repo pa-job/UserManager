@@ -17,14 +17,15 @@ $(function() {
 					}
 				},
 				callback : {
-					onClick : zTreeOnClick
+					onClick : zTreeOnClick,
+					
 				},
 				check : {
 					enable : true,
-					chkStyle : "radio",
+					chkStyle : "checkbox",
 					chkboxType : {
 						"Y" : "ps",
-						"N" : "s"
+						"N" : "ps"
 					}
 				}
 			};
@@ -46,7 +47,7 @@ $(function() {
 				,
 				loading : true,
 				page : true,
-				limit:10,
+				limit:8,
 				limits:[5,10,15,20],
 				cols : [ [ {
 					type : 'checkbox'
@@ -88,19 +89,19 @@ $(function() {
 			});
 			//为树节点添加单击事件
 			function zTreeOnClick(event, treeId, treeNode) {
-				if (treeNode.parentId == 0) {
-					return;
-				} else {
-					$('span').removeClass('radio_true_full');
-					$("a[title='" + treeNode.typeName + "']").prev('span')
-							.addClass('radio_true_full');
-					typeId = treeNode.typeId;
-					table.reload('equInfo', {
-						where : {
-							typeId : typeId
-						}
-					})
-				}
+		console.log("lxf---------------------");
+		var treeObj = $.fn.zTree.getZTreeObj("equType");
+		treeObj.checkNode(treeNode, !treeNode.checked, true); 
+		var nodes = treeObj.getCheckedNodes(true);
+		var arr=[];
+		for(var i in nodes){
+			arr.push(nodes[i].typeId);
+		};
+		console.log(arr);
+		table.reload('equInfo', {
+			where : {
+				list:arr
+		}});
 			}
 
 			//监听行工具事件

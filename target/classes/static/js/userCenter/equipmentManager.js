@@ -17,14 +17,15 @@ $(function() {
 						}
 					},
 					callback : {
-						onClick : zTreeOnClick
+						onClick : zTreeOnClick,
+						onCheck:zTreeOnCheck,
 					},
 					check : {
 						enable : true,
-						chkStyle : "radio",
+						chkStyle : "checkbox",
 						chkboxType : {
 							"Y" : "ps",
-							"N" : "s"
+							"N" : "ps"
 						}
 					}
 				};
@@ -85,22 +86,50 @@ $(function() {
 						toolbar : '#barDemo'
 					} ] ]
 				});
+				//位数节点添加悬着时间
+				function  zTreeOnCheck(event, treeId, treeNode){
+					var treeObj = $.fn.zTree.getZTreeObj("equType");
+					var nodes = treeObj.getCheckedNodes(true);
+					console.log(nodes);
+					var ss=[];
+					console.log(nodes);
+					if(nodes.length>0){
+						for(var i in nodes ){
+							ss.push(nodes[i].typeId)
+						}
+					}
+					console.log(ss);
+					table.reload('equInfo', {
+						where : {
+							list:ss
+							
+					}
+					});
+				}
 				//为树节点添加单击事件
 				function zTreeOnClick(event, treeId, treeNode) {
-					if (treeNode.parentId == 0) {
-						return;
-					} else {
-						$('span').removeClass('radio_true_full');
-						$("a[title='" + treeNode.typeName + "']").prev('span')
-								.addClass('radio_true_full');
-						typeId = treeNode.typeId;
-						table.reload('equInfo', {
-							where : {
-								typeId : typeId
-							}
-						})
+					console.log("lxf---------------------");
+					var treeObj = $.fn.zTree.getZTreeObj("equType");
+					treeObj.checkNode(treeNode, !treeNode.checked, true); 
+					var nodes = treeObj.getCheckedNodes(true);
+					console.log(nodes);
+					var ss=[];
+					console.log(nodes);
+					if(nodes.length>0){
+						for(var i in nodes ){
+							ss.push(nodes[i].typeId)
+						}
 					}
-				}
+					console.log(ss);
+					table.reload('equInfo', {
+						where : {
+							list:ss
+							
+					}
+					});
+					
+					}
+				
 				//表格头工具事件简单封装
 				var toolbarAction = {
 					openLayer : function() {
@@ -165,7 +194,7 @@ $(function() {
 											.checkStatus(obj.config.id), data = checkStatus.data; //获取选中的数据
 									switch (obj.event) {
 									case 'add':
-										$('form')[0].reset();
+										$(':input').val('');
 										toolbarAction.openLayer();
 										var date = new Date();
 										var time = date.getFullYear() + '-'
@@ -174,6 +203,7 @@ $(function() {
 												+ date.getHours() + ':'
 												+ date.getMinutes() + ':'
 												+ date.getSeconds();
+										$('input[name="equState"]').val('0');
 										$('input[name="equInTime"]').val(time)
 										if($('input[name="equInTime"]').val()){
 											$('input[name="equInTime"]').attr("disabled",false);

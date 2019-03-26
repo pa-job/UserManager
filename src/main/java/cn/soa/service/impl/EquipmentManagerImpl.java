@@ -24,15 +24,15 @@ public class EquipmentManagerImpl  implements EquipmentManagerInter{
 	}
 
 	@Override
-	public List<EquipmentInfo> queryAllEqusByCondition(EquipmentInfo info, Integer page, Integer pageSize) {
+	public List<EquipmentInfo> queryAllEqusByCondition(EquipmentInfo info, List<Integer> list,Integer page, Integer pageSize) {
 		
-		return EquipmentManagerDao.queryAllEqusByCondition(info,page,pageSize);
+		return EquipmentManagerDao.queryAllEqusByCondition(info,list,page,pageSize);
 	}
 
 	@Override
-	public Integer QueryEquCount(EquipmentInfo info) {
+	public Integer QueryEquCount(EquipmentInfo info,List<Integer> list) {
 		// TODO Auto-generated method stub
-		return EquipmentManagerDao.QueryEquCount(info);
+		return EquipmentManagerDao.QueryEquCount(info,list);
 	}
 
 	@Override
