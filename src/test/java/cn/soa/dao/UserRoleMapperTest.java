@@ -17,23 +17,17 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import cn.soa.EquipmentManageApplication;
-import cn.soa.entity.IotUserModuleResource;
+import cn.soa.UserManagerApplication;
 import cn.soa.entity.UserRole;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = EquipmentManageApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@SpringBootTest(classes = UserManagerApplication.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 //@WebAppConfiguration
 public class UserRoleMapperTest {
 	@Autowired
 	public UserRoleMapper userRoleMapper;
 	
-	@Test
-	public void findAuthByRolid() {
-		String rolid = "77A987B996C744EFAEC54B5855F7C98E";
-		ArrayList<IotUserModuleResource> findAuthByRolid = userRoleMapper.findAuthByRolid(rolid);
-		System.out.println(findAuthByRolid);
-	}
+
 	
 	//@Test
 	public void findUserRoleByNum() {

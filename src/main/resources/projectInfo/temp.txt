@@ -1,9 +1,0 @@
-select t.TYPE_NAME,sum(case i.equ_name when '-1' then 0 else 1 end ) as 'num'
-from iot_equipment_info i 
-	right join iot_equipment_type t on i.TYPE_ID=t.TYPE_ID
-group by t.TYPE_NAME
-
-select EQU_STATE,case EQU_STATE when 0 then '未使用' when 1 then '预约中' else '使用中' end as usename,
-sum(case EQU_NAME when '-1' then 0 else 1 end) as num
-from iot_equipment_info 
-group by EQU_STATE

@@ -13,12 +13,12 @@
 	<!-- 分页查询角色信息 -->
 	<select id="queryAllroles" resultType="cn.soa.entity.UserRole" >
 		select <include refid="userRoleFiled"> </include> from 
-		(select ROWNUM num, role.* from  iot_user_role role order by rolid) a 
+		iot_user_role role
+		order by rolid
 		<if test="first >= 0  and last!= 0  ">	
-  	   where <![CDATA[ 
-        num >#{first} and num<=#{last}
-     ]]>  
-     </if>
+			limit #{first},#{last}
+     	</if>
+     	
 	</select>
 	<!-- 统计数据 -->
 		<select id="countRoles" resultType="int" >
@@ -38,27 +38,7 @@
 								left join IOT_USER_ROLE r on ur.rolid = r.rolid
 		where o.usernum = #{usernum}
 	</select>
-	
-	<!-- 1.3、根据用户角色id查询用户具有的权限 -->
-	<select id="findAuthByRolid" parameterType="string" resultType="cn.soa.entity.IotUserModuleResource">
-		select 
-			iumr.MODID as modId	,	
-			iumr.NAME as name,
-			iumr.URL as url,
-			iumr.DESCRIBE as describe,
-			iumr.CREATE_TIME as createTime,
-			iumr.LAST_MODIFY_TIME as lastModifyTime,
-			iumr.REMARK1 as remark1,
-			iumr.PARENT_ID as parentId,
-			iumr.IS_PARENT as isParent
-		from IOT_USER_ROLE iur left join IOT_USER_ROLE_AUTH iura on iur.ROLID = iura.ROLID
-						       left join IOT_USER_AUTHORITY iua on  iura.AUTID = iua.AUTID
-							   left join IOT_USER_MODULE_RESOURCE iumr on iumr.MODID = iua.RESOURCEID
-		where iur.ROLID = #{rolid}
-		order by iumr.CREATE_TIME
-	</select>
-	
-	
+
 	<!-- 根据角色查询对应的所有用户 -->
 	<select id="queryAllorgnInfo" resultType="cn.soa.entity.UserOrganization">
 		select * from IOT_USER_ORGANIZATION 
@@ -75,6 +55,7 @@
 	<insert id="saveUserRole" parameterType="cn.soa.entity.UserRole">
 		insert into IOT_USER_ROLE
 		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ROLID,
 			<if test="userRole.name != null and '' != userRole.name ">
 				name,
 			</if>
@@ -93,6 +74,7 @@
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
+			uuid(),
 			<if test="userRole.name != null and '' != userRole.name ">
 				#{userRole.name,jdbcType=VARCHAR},
 			</if>
@@ -126,11 +108,12 @@
 	</insert>
 	<!-- 2.3、批量增加用户角色关系信息 --><!-- 对象以下属性值不能为null -->
 		<insert id="saveUserUserRoleInBatch" parameterType="list" useGeneratedKeys="false">
-		insert all
-		<foreach collection="lists" separator="" item="item" index="index">
-			into IOT_USER_USER_ROLE(userid,rolid) values (#{item.userid},#{item.rolid})	
+		insert into IOT_USER_USER_ROLE (userid,rolid,USER_ROL_ID) values 
+		<trim>
+		<foreach collection="lists" separator="," item="item" index="index">		
+		(#{item.userid},#{item.rolid},uuid())			
 		</foreach>
-		SELECT 1 FROM DUAL
+		</trim>	
 	</insert>
 	
 	<!-- ===========================3、修改===============================  -->

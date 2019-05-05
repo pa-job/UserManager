@@ -7,7 +7,7 @@ $(function(){
 	table.render({
 		toolbar: '#toolbarDemo'
 	    ,elem: '#role'
-	    ,url:'/role/roles/'
+	    ,url:'../../role/roles/'
 	    ,cellMinWidth: 80 //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 	    ,loading:true
 	    ,page:true
@@ -16,10 +16,10 @@ $(function(){
 	      ,{type:'numbers'}
 	      ,{field:'rolid', title: '角色id',hide:true}
 	      ,{field:'name', title: '角色名称'} //width 支持：数字、百分比和不填写。你还可以通过 minWidth 参数局部定义当前单元格的最小宽度，layui 2.2.1 新增
-	      ,{field:'state', title: '状态',templet: '#titleTpl'}
+	      ,{field:'state', title: '状态',hide:true,templet: '#titleTpl'}
 	      ,{field:'create_time', title: '创建时间', sort: true}
 	      ,{field:'last_modify_time', title: '修改时间', sort: true}
-	      ,{field:'note', title: '备注休息', align: 'center'} //单元格内容水平居中
+	      ,{field:'note', title: '备注', align: 'center'} //单元格内容水平居中
 	      ,{fixed: 'right', width: 165, align:'center', toolbar: '#barDemo'}
 	    ]]
 	  });			
@@ -48,7 +48,7 @@ $(function(){
 	
 	form.on('submit(formSubmit)', function(data){
 		$.ajax({
-			url:'/role/addOrUpdateRole',
+			url:'../../role/addOrUpdateRole',
 			data:$('.role-form').serialize() ,
 			dataType:'json',
 			success:function(data){
@@ -107,7 +107,7 @@ $(function(){
 				}
 				var ids_string=ids.join(",")
 				$.ajax({
-					url:'/role/deleteRoles',
+					url:'../../role/deleteRoles',
 					data:{ids:ids_string},
 					dataType:'json',
 					success:function(ajaxdata){
@@ -153,7 +153,7 @@ $(function(){
 			//获取角色下的所有用户
 				    $.ajax({
 			     type: "post",
-			     url: '/role/queryUsersByRold',
+			     url: '../../role/queryUsersByRold',
 			     data: {'rolid':data.rolid},
 			     async: true, 
 			     cache: true,
@@ -186,7 +186,7 @@ $(function(){
 							//动态的添加用户
 							$.ajax({
 							     type: "post",
-							     url: '/role/addOrUpdateUserRole',
+							     url: '../../role/addOrUpdateUserRole',
 							     data: {"list":checkNodes,"rolid":data.rolid},
 							     async: true, 
 							     cache: true,

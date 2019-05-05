@@ -16,7 +16,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import cn.soa.entity.IotUserModuleResource;
 import cn.soa.entity.UserOrganization;
 import cn.soa.entity.UserRole;
 import cn.soa.entity.UserRoleRelation;
@@ -145,15 +144,7 @@ public interface UserRoleMapper {
 	 * @return List
 	 */
 	public List<UserOrganization>queryAllorgnInfo();
-	
-	/**   
-	 * @Title: findAuthByRolid   
-	 * @Description: 根据用户角色id查询用户具有的权限 
-	 * @param: @param rolid
-	 * @param: @return      
-	 * @return: ArrayList<IotUserModuleResource>        
-	 */  
-	public ArrayList<IotUserModuleResource> findAuthByRolid(String rolid);
+
 	
 	/**
 	 * @Title: saveUserUserRoleInBatch 

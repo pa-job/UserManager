@@ -228,12 +228,13 @@ $(function(){
 			layout : [ 'prev', 'page', 'next', 'skip',
 					'count', 'limit' ],
 			cols : [ [
-				{type: 'numbers',title:'序号', align:'center', minWidth:120}
-		    	,{field:'orgid', title:'id', minWidth:120, fixed: 'left', hide: true, align:'center'}
-		    	,{field:'usernum', title:'用户编号', minWidth:300, edit: 'text', align:'center'}
-		    	,{field:'name', title:'姓名', minWidth:250, edit: 'text', align:'center'}
-		    	,{field:'state', title:'状态', minWidth:80, sort: true,  hide: true, align:'center'}
-		    	,{fixed: 'right', title:'操作', toolbar: '#barDemo',minWidth:300, align:'center'}
+				{type: 'numbers',title:'序号', align:'center'}
+		    	,{field:'orgid', title:'id',  fixed: 'left', hide: true, align:'center'}
+		    	,{field:'usernum', title:'用户编号',  edit: 'text', align:'center'}
+		    	,{field:'name', title:'姓名', edit: 'text', align:'center'}
+		    	,{field:'user_password', title:'密码', edit: 'text', align:'center'}
+		    	,{field:'state', title:'状态', sort: true,  hide: true, align:'center'}
+		    	,{fixed: 'right', title:'操作', toolbar: '#barDemo', align:'center'}
 			] ],
 			id: 'testReload',
 			done : function(res, curr, count) {

@@ -130,6 +130,7 @@
 	<insert id="saveUserBackId"  useGeneratedKeys="true" keyProperty="orgid" keyColumn="orgid" parameterType="cn.soa.entity.UserOrganization">
 		insert into iot_user_organization
 		<trim prefix="(" suffix=")" suffixOverrides=",">
+			ORGID,
 			<if test="name != null">
 				name,
 			</if>
@@ -158,6 +159,7 @@
 		</trim>
 		values
 		<trim prefix="(" suffix=")" suffixOverrides=",">
+		uuid(),
 			<if test="name != null ">
 				#{name,jdbcType=VARCHAR},
 			</if>

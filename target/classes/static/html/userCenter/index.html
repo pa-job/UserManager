@@ -9,20 +9,17 @@
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
 		<div class="layui-header">
-	    	<div class="layui-logo" style="font-size:24px">设备管理系统</div>
+	    	<div class="layui-logo" style="font-size:24px"> 审 计 系 统</div>
 	    	<!-- 头部区域（可配合layui已有的水平导航） -->
 	    	<ul class="layui-nav layui-layout-left" id="firstMeno">
 	    		
 	    	</ul>
 		    <ul class="layui-nav layui-layout-right">
 		    	<li class="layui-nav-item">
-			        <a href="javascript:;" id="userName">
-			        	<img src="http://t.cn/RCzsdCq" class="layui-nav-img">			         	
+			        <a href="javascript:;" id="userName">	
+			        <img src="../../img/1.png" class="layui-nav-img">	         	
 			        </a>
-			        <!-- <dl class="layui-nav-child">
-			          	 <dd id="userInfo" ><a href="">基本资料</a></dd> 
-			          	<dd><a href="">安全设置</a></dd>·
-			        </dl> -->
+			
 		      	</li>
 				<li class="layui-nav-item" id="logout"><a href="login.html">退出登录</a></li>
 		    </ul>
@@ -32,11 +29,20 @@
 	    	<div class="layui-side-scroll">
 	      	<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
 	      		<ul class="layui-nav layui-nav-tree"  lay-filter="test" id="secondMeno">
-	      			<li class="layui-nav-item layui-nav-itemed">
-		          		<a class="" href="javascript:;">设备管理</a>
+	      			<li class="layui-nav-item layui-nav-itemed" url="../../html/project.html"  id="project">
+		          		<a class="" href="javascript:;">项目管理</a>
 	        		</li>
-	        		<li class="layui-nav-item layui-nav-itemed" id="userCalc" style="display:none">
-		          		<a class="" href="javascript:;">设备使用统计</a>
+	        		<li class="layui-nav-item layui-nav-itemed" url="../../html/infopaper.html"  id="paper" style="display:none">
+		          		<a class="" href="javascript:;">底稿管理</a>
+	        		</li>
+	        		<li class="layui-nav-item layui-nav-itemed" url="../../html/infopaper-add.html"  id="paperadd" style="display:none">
+		          		<a class="" href="javascript:;">底稿新增管理</a>
+	        		</li>
+	        		<li class="layui-nav-item layui-nav-itemed" url="../../html/userCenter/userManager.html"  id="user" style="display:none">
+		          		<a class="" href="javascript:;">人员管理</a>
+	        		</li>
+	        		<li class="layui-nav-item layui-nav-itemed" url="../../html/userCenter/user_role.html" id="role" style="display:none">
+		          		<a class="" href="javascript:;">角色管理</a>
 	        		</li>
 	      		</ul>
 			</div>

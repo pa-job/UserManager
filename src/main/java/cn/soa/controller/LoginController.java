@@ -92,10 +92,13 @@ public class LoginController{
 			List<UserRole> userRoles = new ArrayList<UserRole>();
 			userRoles = roleService.getUserRoleByNum(userName.trim());
 			String roles = "";
+			String roleNames = "";
 			logger.debug("-------userRoles:-----------" + userRoles );
 			if( userRoles != null && userRoles.get(0) != null ) {
 						roles = userRoles.get(0).getRolid();
+						roleNames = ((UserRole)userRoles.get(0)).getName();
 				GlobalUtil.addCookie( "role", roles );
+				 GlobalUtil.addCookie("roleNames", roleNames);
 			}		
 			
 			//设置组织			

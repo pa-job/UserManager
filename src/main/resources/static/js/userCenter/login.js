@@ -16,9 +16,6 @@ var loginUrl = ipPort + "/user",
 $(function(){
 	console.log( '-------事件绑定-----------' );
 	
-	//注册单击事件
-	$('#register').on('click', registerClickEvent );
-	
 	
 	//登录单击事件
 	$('#login').on('click', loginClickEvent );
@@ -89,31 +86,6 @@ function loginClickEvent(){
 	return false;
 }
 
-/**
- * 注册单击事件回调函数
- */
-function registerClickEvent(){
-	console.log( '-------注册单击事件回调函数-----------' );
-	//弹出框注册页面
-	indexSonWinIndex = layer.open({
-		type: 2,
-		title: '用户注册页面',
-//		btn: ['确定', '取消'],
-		area: ['700px','450px'],
-		content: ipPort + '/html/userCenter/register.html',
-		//此处要求返回的格式
-		success: function(){
-			
-		},
-		yes: function( index, sonDom ){
-			var sonWindow = window[sonDom.find('iframe')[0]['name']],
-				nextNodeExecuPE = sonWindow.getCurrTreeNodeName();	
-		}
-	});
-	
-	//刷新登录页
-	return false;
-}
 
 /**
  * 登录成功回调函数

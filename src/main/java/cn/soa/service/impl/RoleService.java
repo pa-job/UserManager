@@ -23,7 +23,6 @@ import org.springframework.stereotype.Service;
 
 import cn.soa.dao.UserRoleMapper;
 import cn.soa.entity.AuthInfo;
-import cn.soa.entity.IotUserModuleResource;
 import cn.soa.entity.UserOrganization;
 import cn.soa.entity.UserRole;
 import cn.soa.entity.UserRoleRelation;
@@ -56,111 +55,6 @@ public class RoleService implements RoleServiceInter{
 	}	
 	
 	
-	/**   
-	 * @Title: findAuthJsonServ   
-	 * @Description:  根据用户角色id查询用户具有的权限    
-	 * @return: ArrayList<IotUserModuleResource>        
-	 */  
-	@Override
-	public ArrayList<IotUserModuleResource> findAuthJsonServ( String rolid){
-		/*
-		 * 查询权限
-		 */
-		ArrayList<IotUserModuleResource> auths = null;
-		try {
-			auths = userRoleMapper.findAuthByRolid(rolid);
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.debug("--------根据用户角色id查询用户具有的权限  findAuthJsonServ--------出错");
-			return null;
-		}
-		return auths;
-	}
-
-	
-	/**   
-	 * @Title: findAuthByRolidServ   
-	 * @Description: 根据用户角色id查询用户具有的权限    
-	 * @param: @param rolid
-	 * @param: @return      
-	 * @return: ArrayList<IotUserModuleResource>        
-	 */ 
-	@Override
-	public ArrayList<AuthInfo> findAuthByRolidServ( String rolid){
-		/*
-		 * 查询权限
-		 */
-		ArrayList<IotUserModuleResource> auths = null;
-		try {
-			auths = userRoleMapper.findAuthByRolid(rolid);
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.debug("--------根据用户角色id查询用户具有的权限  findAuthByRolidServ--------出错");
-			return null;
-		}
-		logger.debug( "--S--------根据用户角色id查询用户具有的权限   -----auths:" );
-		logger.debug( auths.toString());
-		 
-		 /*
-		  * 运算赋值
-		  */
-		ArrayList<IotUserModuleResource> tempAuths = new ArrayList<IotUserModuleResource>();
-		ArrayList<AuthInfo> authInfos = new ArrayList<AuthInfo>();
-		if( auths != null ) {
-			for( IotUserModuleResource i : auths) {
-				if( "-1".equals(i.getParentId())) {
-					tempAuths.add(i);
-					AuthInfo authInfo = new AuthInfo();
-					authInfo.setId( i.getModId() );
-					authInfo.setFirst(i.getName());
-					authInfos.add(authInfo);
-				}			
-			}
-			logger.debug( "--S--------根据用户角色id查询用户具有的权限   -----tempAuths:" );
-			logger.debug( tempAuths.toString());
-			
-			for( IotUserModuleResource i : auths) {
-				String pid = i.getParentId();
-				if(  pid != null && pid != "-1" ) {
-					for( int j = 0; j < tempAuths.size() ; j++ ) {
-						if( pid.equals( tempAuths.get(j).getModId() ) ) {
-							AuthInfo currentAuth = authInfos.get(j);
-							String a = currentAuth.getSecond();
-							//设置名称
-							if( a == null ) {
-								currentAuth.setSecond( i.getName() );
-							}else {
-								if( i.getName() == null  ) {
-									currentAuth.setSecond( a + "," + " " );
-								}else {
-									currentAuth.setSecond( a + "," + i.getName() );
-								}							 
-							}
-							
-							//设置url
-							String url = currentAuth.getUrl();
-							//设置名称
-							if( url == null ) {
-								currentAuth.setUrl( i.getUrl() );
-							}else {
-								if( i.getUrl() == null  ) {
-									currentAuth.setUrl( url + "," + " " );
-								}else {
-									currentAuth.setUrl( url + "," + i.getUrl() );
-								}
-							}
-							
-							break;
-						}
-					}			
-				}
-			}
-			logger.debug( "--S--------根据用户角色id查询用户具有的权限   -----AuthInfo" );
-			logger.debug( authInfos.toString());						
-			return authInfos;
-		}	
-		return authInfos;
-	}
 
 	@Override
 	public List<UserRole> queryAllroles(Integer page, Integer pageSize) {
@@ -219,9 +113,12 @@ public class RoleService implements RoleServiceInter{
 			}
 			if( !orgsByid.isEmpty() ) {
 				for(int i=0;i<orgsByid.size();i++) {
-					if(org.getName().equals(orgsByid.get(i).getName())) {
-						map.put("checked", true);
-					};						
+					if( orgsByid.get(i) != null && org != null ) {
+						if(org.getName().equals(orgsByid.get(i).getName())) {
+							map.put("checked", true);
+						};	
+					}
+										
 				}
 			}
 			

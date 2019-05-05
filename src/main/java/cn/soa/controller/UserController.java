@@ -32,17 +32,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.soa.entity.AuthInfo;
-import cn.soa.entity.IotUserModuleResource;
 import cn.soa.entity.UserInfo;
 import cn.soa.entity.UserOrganization;
-import cn.soa.entity.UserRole;
-import cn.soa.entity.UserTest;
 import cn.soa.entity.headResult.ResultJson;
 import cn.soa.entity.headResult.UserTableJson;
 import cn.soa.service.inter.RoleServiceInter;
 import cn.soa.service.inter.UserServiceInter;
-import cn.soa.util.GlobalUtil;
 
 
 /**
@@ -124,25 +119,6 @@ public class UserController {
 	}
 	
 	
-	 /**   
-	  * @Title: getUserAllListTest   
-	  * @Description:  查询所有用户(测试)             
-	  * @return: UserTableJson<List<UserOrganization>>        
-	  */  
-	@PostMapping("/list/test")
-	public UserTableJson<List<UserTest>> getUserAllListTest() {
-		logger.debug("--C----------开始获取所有用户-----------");
-		UserTest userTest = new UserTest("王者", 0 , -1);
-		UserTest userTest1 = new UserTest("射手", 1 ,0);
-		UserTest userTest2 = new UserTest("辅助", 2 ,0);
-		UserTest userTest3 = new UserTest("后裔", 11 ,1); 
-		ArrayList<UserTest> arrayList = new ArrayList<UserTest>();
-		arrayList.add(userTest);
-		arrayList.add(userTest1);
-		arrayList.add(userTest2);
-		arrayList.add(userTest3);
-		return new UserTableJson<List<UserTest>>( "", 1, "成功", arrayList, arrayList.size(),true );
-	}
 	
 	
 	 /**   
@@ -274,87 +250,7 @@ public class UserController {
 		return null;
 	}
 	
-	/**   
-	 * @Title: getAuthByRolid   
-	 * @Description: 查询用户的模块菜单权限  
-	 * @param: @return      
-	 * @return: ResultJson<List<AuthInfo>>        
-	 */  
-	@GetMapping("/role/auths")
-	public ResultJson<List<AuthInfo>> getAuthByRolid(){
-		logger.debug("-----C------- 查询用户的模块菜单权限     ---- usernum： ");
-		/*
-		 * 获取角色 
-		 */
-		String rolid = null;
-		String usernum =  GlobalUtil.getCookie("num");
-		logger.debug("--C-----查询用户的模块菜单权限  :-----------usernum:" + usernum.substring( 1, usernum.length()-1 ));
-		List<UserRole> userRoles = roleService.getUserRoleByNum(usernum.substring( 1, usernum.length()-1 ));		
-		logger.debug("--C-----查询用户的模块菜单权限  :-----------userRoles:" + userRoles );
-		//暂假定一个用户一个角色
-		if( userRoles != null && userRoles.get(0) != null ) {
-			rolid = userRoles.get(0).getRolid();
-		}
-		logger.debug("--C-----查询用户的模块菜单权限  :-----------rolid:" + rolid );
-		if( rolid == null ) {
-			logger.debug( "---C---- 用户角色不存在 ------" );
-			return new ResultJson<List<AuthInfo>>( 1, "用户角色不存在", null );
-		}
-		
-		/*
-		 * 查询 
-		 */
-		ArrayList<AuthInfo> authInfos = roleService.findAuthByRolidServ(rolid);
-		if( authInfos != null ) {
-			logger.debug( "---C---- 用户权限查询成功 ------authInfos：" + authInfos );
-			return new ResultJson<List<AuthInfo>>( 0, "用户角色权限查询成功", authInfos );
-		}else {
-			logger.debug( "---C---- 用户角色查询失败或无任何权限 ------authInfos：" + authInfos );
-			return new ResultJson<List<AuthInfo>>( 1, "用户角色权限查询失败或无任何权限", null );
-		}
-	}
-	
-	
-	/**   
-	 * @Title: getAuthByRolid   
-	 * @Description: 查询用户的模块菜单权限  
-	 * @param: @return      
-	 * @return: ResultJson<List<AuthInfo>>        
-	 */  
-	@GetMapping("/auths")
-	public ResultJson<List<IotUserModuleResource>> getAuthJsonByRolid(){
-		logger.debug("-----C------- 查询用户的模块菜单权限     ---- usernum： ");
-		/*
-		 * 获取角色 
-		 */
-		String rolid = null;
-		String usernum =  GlobalUtil.getCookie("num");
-		logger.debug("--C-----查询用户的模块菜单权限  :-----------usernum:" + usernum.substring( 1, usernum.length()-1 ));
-		List<UserRole> userRoles = roleService.getUserRoleByNum(usernum.substring( 1, usernum.length()-1 ));		
-		logger.debug("--C-----查询用户的模块菜单权限  :-----------userRoles:" + userRoles );
-		//暂假定一个用户一个角色
-		if( userRoles != null && userRoles.get(0) != null ) {
-			rolid = userRoles.get(0).getRolid();
-		}
-		logger.debug("--C-----查询用户的模块菜单权限  :-----------rolid:" + rolid );
-		if( rolid == null ) {
-			logger.debug( "---C---- 用户角色不存在 ------" );
-			return new ResultJson<List<IotUserModuleResource>>( 1, "用户角色不存在", null );
-		}
-		
-		/*
-		 * 查询 
-		 */
-		ArrayList<IotUserModuleResource> auths = roleService.findAuthJsonServ(rolid);
-		if( auths != null ) {
-			logger.debug( "---C---- 用户权限查询成功 ------authInfos：" + auths );
-			return new ResultJson<List<IotUserModuleResource>>( 0, "用户角色权限查询成功", auths );
-		}else {
-			logger.debug( "---C---- 用户角色查询失败或无任何权限 ------authInfos：" + auths );
-			return new ResultJson<List<IotUserModuleResource>>( 1, "用户角色权限查询失败或无任何权限", null );
-		}
-	}
-	
+
 	/**   
 	 * @Title: getUserByNum   
 	 * @Description:  根据用户usernum查询用户

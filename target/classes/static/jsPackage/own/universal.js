@@ -23,6 +23,23 @@ layui.form.verify({
 })
 */
 
+
+$.fn.serializeObject = function() {  
+        var o = {};  
+        var a = this.serializeArray();  
+        $.each(a, function() {  
+            if (o[this.name]) {  
+                if (!o[this.name].push) {  
+                    o[this.name] = [ o[this.name] ];  
+                }  
+                o[this.name].push(this.value || '');  
+            } else {  
+                o[this.name] = this.value || '';  
+            }  
+        });  
+        return o;  
+    }  
+
 /**
  * js生成html(重写)
  * wholePageHtml--输出全部的html代码
@@ -330,8 +347,7 @@ function gAjax( url, data, succFuncName ){
 	 		if( jsonData ){
 	 			var data = jsonData.data;
 	 			if( jsonData.state == 0 && data ){
-	 				layer.msg( jsonData.message, {icon:1} );
-	 				eval( succFuncName + "(data)" );
+	 				succFuncName(data);
 	 			}else{
 	 				layer.msg( jsonData.message, {icon:2} );
 	 			}		

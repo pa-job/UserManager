@@ -16,13 +16,13 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import cn.soa.EquipmentManageApplication;
+import cn.soa.UserManagerApplication;
 import cn.soa.entity.UserInfo;
 import cn.soa.entity.UserOrganization;
 import cn.soa.entity.UserRegister;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { EquipmentManageApplication.class })
+@SpringBootTest(classes = { UserManagerApplication.class })
 @WebAppConfiguration
 public class UserInfoTest {
 	@Autowired

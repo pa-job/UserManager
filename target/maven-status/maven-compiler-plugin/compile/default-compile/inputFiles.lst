@@ -1,48 +1,46 @@
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\util\GlobalUtil.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\UserAuthMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\UserMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\UserInfo.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\inter\AuthServiceInter.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\ws\WebSocketServerService.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\UserRegistController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\UserInfoMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\UserController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\LoginController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\config\shiro\ShiroConfig.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\inter\RoleAuthorityServiceInter.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\config\websocket\WSConfig.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\impl\UserService.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\GlobalController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\UserRegister.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\StaticHtmlController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\IotUserAuthority.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\IotUsermanagerApplication.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\IotUserModuleResource.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\UserOrganization.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\UserRoleMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\headResult\ApiJson.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\IotUserRoleAuth.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\UserRole.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\UserRegistMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\UserTest.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\impl\UserRegistService.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\RoleAuthority.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\IotUserAuthorityMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\IotUserRoleAuthMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\impl\AuthService.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\AuthController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\NoticeController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\RoleAuthorityControl.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\IotUserModuleResourceMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\inter\RoleServiceInter.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\dao\RoleAuthorityMapper.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\impl\RoleAuthorityService.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\inter\UserServiceInter.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\headResult\ResultJson.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\headResult\UserTableJson.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\entity\UserAuthority.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\inter\UserRegistServiceInter.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\service\impl\RoleService.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\util\SpringUtil.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\controller\RoleController.java
-C:\Users\yanghua\git\iot_usermanager\iot_usermanager\src\main\java\cn\soa\config\shiro\MyShiroRealm.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\headResult\UserTableJson.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\IotUserModuleResource.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\util\SpringUtil.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\impl\UserService.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\config\shiro\ShiroConfig.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\controller\UserRegistController.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\inter\UserServiceInter.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\IotUserAuthority.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\controller\EquipmentManagerController.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\UserRoleRelation.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\headResult\ApiJson.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\controller\GlobalController.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\UserAuthority.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\UserInfo.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\dao\UserMapper.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\controller\RoleController.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\inter\RoleServiceInter.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\controller\StaticHtmlController.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\dao\EquipmentManagerMapper.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\inter\EquipmentManagerInter.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\config\shiro\MyShiroRealm.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\controller\LoginController.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\IotUserRoleAuth.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\UserTest.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\EquipmentManageApplication.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\dao\UserInfoMapper.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\UserRole.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\UserOrganization.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\impl\UserRegistService.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\RoleAuthority.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\UserRegister.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\impl\EquipmentManagerImpl.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\config\druid\SpringDaoMethodAspect.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\Node.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\inter\UserRegistServiceInter.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\EquipmentUseInfo.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\controller\UserController.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\service\impl\RoleService.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\AuthInfo.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\dao\UserRegistMapper.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\util\GlobalUtil.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\dao\UserRoleMapper.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\util\DataUtil.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\EquipmentInfo.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\EquipmentType.java
+E:\eclipse company all Info\company_workspace_1\EquipmentManage\src\main\java\cn\soa\entity\headResult\ResultJson.java

@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-import cn.soa.EquipmentManageApplication;
+import cn.soa.UserManagerApplication;
 import cn.soa.entity.headResult.ResultJson;
 
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = { EquipmentManageApplication.class })
+@SpringBootTest(classes = { UserManagerApplication.class })
 @WebAppConfiguration
 public class LoginControTest {
 	@Autowired
