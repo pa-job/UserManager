@@ -2,11 +2,10 @@ $(function(){
 	var table=layui.table
 	,form=layui.form
 	,layer=layui.layer
-	,surl='/ProjectAudit/projects'
-	,aurl='/ProjectAudit/projects'
-	,durl='/ProjectAudit/projects'
-	,purl='/ProjectAudit/projects'
-	,suurl='/ProjectAudit/user/users'		
+	,surl='/usermanager/materials'
+	,aurl='/usermanager/materials'
+	,durl='/usermanager/materials'
+	,purl='/usermanager/materials'	
 	,init = {
 			hideElem:function(){			
 				$( '#addArea' ).hide();
@@ -20,7 +19,7 @@ $(function(){
 				     dataType : "json",
 				     success : function( jsonData ){
 				    	 console.log(jsonData);
-				    	 var data = jsonData['_embedded']['projects'];
+				    	 var data = jsonData['_embedded']['materials'];
 				    	 if( data ){
 				    		 table.render({
 								elem : '#table',
@@ -39,13 +38,16 @@ $(function(){
 										'count', 'limit' ],
 								cols : [ [
 									{type: 'numbers',title:'序号', align:'center'}
-									,{field:'pid', title:'主键',  fixed: 'left', hide: true, align:'center'}
-							    	,{field:'pnumber', title:'项目号', edit:'text', align:'center'}
-							    	,{field:'pname', title:'项目名称',edit:'text',  align:'center'}
-							    	,{field:'pmanager', title:'项目经理',  edit: 'text', align:'center'}	           
-							    	,{field:'ppartitioner', title:'项目成员',  edit: 'text', align:'center'}
-							    	,{field:'ptime', title: '审计时间',edit:'text',edit:'text', align:'center'}
-							    	,{field:'prange', title: '审计范围',edit:'text', align:'center'}
+									,{field:'mid', title:'主键',  fixed: 'left', hide: true, align:'center'}
+							    	,{field:'name', title:'物资名称', edit:'text', align:'center'}
+							    	,{field:'rfid', title:'物资rfid',edit:'text',  align:'center'}
+							    	,{field:'number', title:'物资数量',  edit: 'text', align:'center'}	           
+							    	,{field:'curraera', title:'物资当前区域',  edit: 'text', align:'center'}
+							    	,{field:'authaera', title: '物资权限区域',edit:'text', align:'center'}
+							    	,{field:'shelves', title: '物资货架',edit:'text', align:'center'}
+							    	,{field:'requirebusrfid', title: '要求车辆rfid',edit:'text', align:'center'}
+							    	,{field:'shelves', title: '物资货架',edit:'text', align:'center'}
+							    	,{field:'note', title: '物资信息',edit:'text', align:'center'}
 							    	,{fixed: 'right', title:'操作', toolbar: '#barDemo', align:'center'}
 								] ],
 								id: 'testReload',
@@ -111,10 +113,6 @@ $(function(){
 	username = username.substr( 1, username.length-2);
 	userRole = getCookie1("roleNames");
 	$('#userName').find('img').after(username);
-	if(contains(userRole,'客户')){
-		$('#add').hide();
-		$('#barDemo').remove();
-	}
 	
 	init.initTable();	
 	
@@ -140,7 +138,7 @@ $(function(){
 		layer.open({
 	        type: 1,
 	        title: '新增项目'
-	        ,area: ['40%', '60%']	  
+	        ,area: ['30%', '80%']	  
 	        ,id: 'layerDemo'+ 1 //防止重复弹出
 	        ,content: $( '#addArea' )
 	        ,btn: ['确定', '取消']
@@ -152,13 +150,13 @@ $(function(){
 	        	$.ajax({
 	       	   		type: "post",
 	       	   		url: aurl,
-	       	   		data: JSON.stringify($(layero).find('form').serializeObject()),
+	       	   		data: JSON.stringify($(layero).find('form').serializeObject1()),
 	       	   		contentType: "application/json",
 	       	   		dataType: "json",	       	     
 	       	   		success: function(jsonData){
 	       	   			console.log(jsonData)
-	       	   			if( jsonData.pnumber ){
-	    	        		layer.msg('增加项目成功',{icon:1})
+	       	   			if( jsonData.mid ){
+	    	        		layer.msg('增加物资成功',{icon:1})
 	    		        	init.initTable();		        	
 	    		        	init.hideElem();
 	    		        	layer.close(index);
@@ -176,21 +174,8 @@ $(function(){
 	        end: function(){
 	        	init.hideElem();
 	        },
-	        success: function( layero, index ){    	 
-	        	ajax('get',suurl,{},function(data){
-	        		$('#pmanager').empty();
-	        		$('#ppartitioner1a').empty();
-	        		$.each( data, function(index,item){
-	        			$('#pmanager').append(
-		        				' 	<option value="' + item.usernum + '">' +  item.name + '</option> ' 
-		        		);
-	        			$('#ppartitioner1a').append(
-		        				'<input type="checkbox"  lay-filter="ppartitioner1" name="ppartitioner1" title="'+ item.name +' ">'
-		        		);
-	        		})    
-	        		form.render();
-	        	})
-	        	
+	        success: function( layero, index ){    	   
+	        	form.render();
 	        }
     	}) 
 	})

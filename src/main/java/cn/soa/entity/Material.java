@@ -2,8 +2,14 @@ package cn.soa.entity;
 
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +23,12 @@ import lombok.experimental.Accessors;
 @Accessors( chain=true )
 @Entity
 public class Material  implements Serializable {
+	@Id
+    @GenericGenerator(name="idGenerator", strategy="uuid") //这个是hibernate的注解/生成32位UUID
+    @GeneratedValue(generator="idGenerator")
+	
 	private String mid;
+	
 	private String rfid;
 	private String name;
 	private String number;
@@ -31,4 +42,6 @@ public class Material  implements Serializable {
 	private String flag;	
 	private String remark1;
 	private String remark2;
+	@OneToMany(mappedBy = "material")
+	private List<MaterialHistory> mh;
 }

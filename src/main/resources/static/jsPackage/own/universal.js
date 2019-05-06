@@ -40,6 +40,19 @@ $.fn.serializeObject = function() {
         return o;  
     }  
 
+$.fn.serializeObject1 = function() {  
+    var o = {};  
+    var a = this.serializeArray();  
+    $.each(a, function() {  
+        if (o[this.name]) {  
+        	o[this.name] = o[this.name] + "," + this.value;        
+        } else {  
+            o[this.name] = this.value || '';  
+        }  
+    });  
+    return o;  
+}  
+
 /**
  * js生成html(重写)
  * wholePageHtml--输出全部的html代码
