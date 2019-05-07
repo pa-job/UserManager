@@ -4,7 +4,7 @@
  
 <mapper namespace="cn.soa.dao.UserRoleMapper">
 	<sql id="userRoleFiled">
-	last_modify_time,	name, create_time,create_time,state, note, remark1 , remark2,rolid
+	last_modify_time,	name, create_time,create_time,state, note, remark1 , rolid
 	</sql>
 
 

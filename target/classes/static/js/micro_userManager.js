@@ -5,7 +5,7 @@ var ip = "localhost";
 var port = "8080";
 
 
-var ipPort = "http://" + ip + ":" + port + "/ProjectAudit";
+var ipPort = "http://" + ip + ":" + port + "/usermanager";
 
 var paper={
 		"1":{
