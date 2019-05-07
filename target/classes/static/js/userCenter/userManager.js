@@ -59,7 +59,7 @@ $(function(){
 			layer.open({
 		        type: 1,
 		        title: '增加用户'
-		        ,area: ['40%', '40%']	        	
+		        ,area: ['40%', '45%']	        	
 		        ,id: 'layerDemo'+ 1 //防止重复弹出
 		        ,content: $('#form_add_user')
 		        ,btn: ['提交', '取消']
@@ -233,6 +233,7 @@ $(function(){
 		    	,{field:'usernum', title:'用户编号',  edit: 'text', align:'center'}
 		    	,{field:'name', title:'姓名', edit: 'text', align:'center'}
 		    	,{field:'user_password', title:'密码', edit: 'text', align:'center'}
+		    	,{field:'remark2', title:'Rfid编码', edit: 'text', align:'center'}
 		    	,{field:'state', title:'状态', sort: true,  hide: true, align:'center'}
 		    	,{fixed: 'right', title:'操作', toolbar: '#barDemo', align:'center'}
 			] ],

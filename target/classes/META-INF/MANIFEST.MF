@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: EquipmentManage
 Implementation-Version: 0.0.1-SNAPSHOT
-Built-By: yanghua
+Built-By: 12034
 Implementation-Vendor-Id: cn.soa
-Build-Jdk: 1.8.0_152
+Build-Jdk: 1.8.0_45
 Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
  ot-starter-parent/EquipmentManage
 Created-By: Maven Integration for Eclipse
