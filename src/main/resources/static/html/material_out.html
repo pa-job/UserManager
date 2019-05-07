@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<title>物资管理</title>
+  	<meta name="renderer" content="webkit">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  	<link rel="stylesheet" href="../jsPackage/layui-v2.4.5/css/layui.css"  media="all">
+  	<script src="../jsPackage/jquery-3.3.1/jquery-3.3.1.min.js" type="text/javascript"></script>	
+	<script src="../jsPackage/layui-v2.4.5/layui.all.js" type="text/javascript"></script>   	
+  	<script src="../js/micro_userManager.js" type="text/javascript"></script>  	
+  	<script src="../jsPackage/own/universal.js" type="text/javascript"></script>
+</head>
+<body >
+	<div >
+		<div style="padding-left:15px">
+			<!-- 物资管理 -->
+			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+		  		<legend>物资出库管理</legend>
+			</fieldset>
+		    
+		    <!-- 物资新增区域 -->
+			<form class="layui-form" id="addArea" action="" style="margin-top:20px">				
+	  			<div class="layui-form-item">
+			    	<label class="layui-form-label">物资rfid：</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="rfid" id="rfid" autocomplete="off" 
+			      			placeholder="" class="layui-input" style="width:60%;display:inline-block">
+			    	</div>
+			  	</div>		
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">物资名称：</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="name" id="name" autocomplete="off" 
+			      			placeholder="" class="layui-input" style="width:60%;display:inline-block">
+			    	</div>
+			  	</div>	
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">物资数量：</label>
+			    	<div class="layui-input-block">
+			      		<input type="text" name="number" id="number" autocomplete="off" 
+			      			placeholder="" class="layui-input"  style="width:60%;display:inline-block">
+			    	</div>
+			  	</div>		
+			  	<div class="layui-form-item">
+			    	<label class="layui-form-label">物资入出库时间：</label>
+			    	<div class="layui-input-block">			      
+		      			<input type="text" name="time" id="time" autocomplete="off" 
+			      			placeholder="" class="layui-input"  style="width:60%;display:inline-block">
+			    	</div>	
+			    </div>	 
+				<div class="layui-form-item" style="display:none">
+				    <label class="layui-form-label">物资出：</label>
+					 	<div class="layui-input-block" >
+							<input type="text" name="tflaginout" id="tflaginout" autocomplete="off" 
+			      				placeholder="" class="layui-input"  value="2">
+					    </div>
+				</div>	
+				<div class="layui-form-item">
+				    <label class="layui-form-label">出库人1：</label>
+					 	<div class="layui-input-block" >
+							<input type="text" name="person1" id="person1" autocomplete="off" 
+			      				placeholder="" class="layui-input"  style="width:60%;display:inline-block">
+					    </div>
+				</div>	
+				<div class="layui-form-item">
+				    <label class="layui-form-label">出库人2：</label>
+				 	<div class="layui-input-block" >
+						<input type="text" name="person2" id="person2" autocomplete="off" 
+		      				placeholder="" class="layui-input"  style="width:60%;display:inline-block">
+				    </div>
+				</div>	
+				<div class="layui-form-item">
+				    <label class="layui-form-label">备注信息：</label>
+				 	<div class="layui-input-block" >
+						<input type="text" name="note" id="note" autocomplete="off" 
+		      				placeholder="" class="layui-input"  style="width:60%;display:inline-block">
+				    </div>
+				</div>	
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+			      		<button class="layui-btn" style="margin-left:30%"  id="submit">提交</button>
+			    	</div>
+			  	</div>	
+			</form>
+		</div>
+		
+		<!-- js css-->		
+	  	<script src="../js/material_out.js" type="text/javascript"></script>
+	  	<script src="../jsPackage/jquery-3.3.1/jquery.validate.js" type="text/javascript"></script>
+  	</div>
+</body>
+</html>

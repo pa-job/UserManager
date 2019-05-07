@@ -33,6 +33,7 @@ public class MaterialHistory  implements Serializable {
 	private String aera;
 	private String aflaginout;
 	private String busrfid;
+	private String number;
 	private String person1;
 	private String person2;
 	private String note;
